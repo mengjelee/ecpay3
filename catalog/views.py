@@ -212,16 +212,16 @@ def changepw(request):
 
 def end_page(request):
     if request.method == 'GET':
-        return HttpResponseRedirect('homepage')
+        return HttpResponse('post =get')
 
     if request.method == 'POST':
         result = request.POST.get('RtnMsg')
         if result == 'Succeeded':
-            return '付款成功！'
+            return HttpResponse('付款成功！')
 
         # 判斷失敗
         else:
-            return '付款失敗'
+            return HttpResponse('付款失敗')
 
 
 def end_return(request):
