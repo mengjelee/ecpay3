@@ -24,13 +24,13 @@ def main(context):
         
         # 結帳後，先導到 OrderResultURL，從綠界頁面跳回的頁面
         # 如果沒有參數才會跳轉到 ClientBackURL
-		'ClientBackURL': 'http://127.0.0.1:8000/catalog/',
+		'ClientBackURL': 'https://ecpay2.herokuapp.com/catalog/homepage/',  #暫定回日曆
 		'ItemURL': 'https://www.ecpay.com.tw/item_url.php',     # 商品資訊頁面
 		'Remark': '交易備註',         # 備註文字
 		'ChooseSubPayment': '',
         
         # 結帳成功/失敗後的結果頁面，告知顧客本次的結帳結果
-        'OrderResultURL': 'https://www.ecpay.com.tw/order_result_url.php', 
+        'OrderResultURL': 'https://ecpay2.herokuapp.com/catalog/homepage/',  #暫定回日曆 
 		'NeedExtraPaidInfo': 'Y',
 		'DeviceSource': '',
 		'IgnorePayment': '',
