@@ -13,6 +13,6 @@ urlpatterns = [
         path('editdata/', views.editdata, name='editdata'),
         path('changepw/', views.changepw, name='changepw'),
         path('ecpay/', views.ecpay_view, name='ecpay'),
-        path('end_page/', views.end_page),
-        path('end_return/', views.end_return),
+        path('ecpay/end_page/', views.end_page),
+        path('ecpay/end_return/', views.end_return),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
