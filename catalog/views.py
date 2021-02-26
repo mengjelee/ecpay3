@@ -215,15 +215,15 @@ def end_page(request):
         return redirect(url_for('index'))
 
     if request.method == 'POST':
-        result = request.form['RtnMsg']
+        result = request.POST.get('RtnMsg')
         if result == 'Succeeded':
             messages.success(request, '付款成功！')
-            return HttpResponseRedirect(reverse('calendar'))
+            return HttpResponseRedirect('calendar')
 
         # 判斷失敗
         else:
             messages.error(request, '付款失敗')
-            return HttpResponseRedirect(reverse('calendar'))
+            return HttpResponseRedirect('calendar')
 
 
 def end_return(request):
