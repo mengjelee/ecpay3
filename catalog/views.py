@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .ecpay_testing import main
 # Create your views here.
-from .models import User, Class, Class_DayTime, Class_details #Book, Author, BookInstance, Genre,
+from .models import *
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib import messages
