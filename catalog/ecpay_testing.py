@@ -10,6 +10,7 @@ spec.loader.exec_module(module)
 from datetime import datetime
 
 def main(context):
+	host_name = request.host_url
 	# 第二個需要修改的，商品資訊
 	order_params = {
         'MerchantTradeNo': datetime.now().strftime("NO%Y%m%d%H%M%S"),
@@ -19,18 +20,18 @@ def main(context):
 		'TotalAmount': 2000,         # 商品金額
 		'TradeDesc': '訂單測試',      # 商品描述
 		'ItemName': context['user_name'],#'商品1#商品2',    # 商品名稱，用井字號當分行
-		'ReturnURL': 'https://www.ecpay.com.tw/return_url.php', # 顧客填完付款資料後的跳轉頁面
+		'ReturnURL': host_name+'end_return', # 顧客填完付款資料後的跳轉頁面
 		'ChoosePayment': 'ALL',      # 顧客的付費方式
         
         # 結帳後，先導到 OrderResultURL，從綠界頁面跳回的頁面
         # 如果沒有參數才會跳轉到 ClientBackURL
-		'ClientBackURL': 'https://ecpay2.herokuapp.com/catalog/homepage/',  #暫定回日曆
+		'ClientBackURL': host_name + 'end_page',  #暫定回日曆
 		'ItemURL': 'https://www.ecpay.com.tw/item_url.php',     # 商品資訊頁面
 		'Remark': '交易備註',         # 備註文字
 		'ChooseSubPayment': '',
         
         # 結帳成功/失敗後的結果頁面，告知顧客本次的結帳結果
-        'OrderResultURL': 'https://ecpay2.herokuapp.com/catalog/homepage/',  #暫定回日曆 
+        'OrderResultURL': host_name + 'end_page',  #暫定回日曆 
 		'NeedExtraPaidInfo': 'Y',
 		'DeviceSource': '',
 		'IgnorePayment': '',

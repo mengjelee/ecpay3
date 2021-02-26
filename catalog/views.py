@@ -20,6 +20,7 @@ def ecpay_view(request):
     return HttpResponse(main(context))
     #return HttpResponse(main())
 
+
 def index(request):
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'frontpage.html')
@@ -207,3 +208,24 @@ def changepw(request):
             else:
                 messages.error(request, '請重新輸入密碼')
                 return HttpResponseRedirect(reverse('changepw'))
+
+
+def end_page():
+    if request.method == 'GET':
+        return redirect(url_for('index'))
+
+    if request.method == 'POST':
+        result = request.form['RtnMsg']
+        if result == 'Succeeded':
+            messages.success(request, '付款成功！')
+            return HttpResponseRedirect(reverse('calendar'))
+
+        # 判斷失敗
+        else:
+            messages.error(request, '付款失敗')
+            return HttpResponseRedirect(reverse('calendar'))
+
+
+def end_return():
+    if request.method == 'POST':
+        return '1|OK'
