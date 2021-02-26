@@ -1,0 +1,138 @@
+h1,h2,h3,h4,h5{
+    font-family: 'Noto Sans TC', sans-serif;
+}
+p,a,input,label,textarea,span,ul,li{
+    font-family: 'Open Sans', sans-serif;
+}
+/*-------start banner design ---------*/
+header{
+    position: fixed;  /*讓響應的下拉不會推擠下方的元素*/
+    z-index: 10;
+    width: 100%;
+    /*background: rgb(41, 43, 44);*/
+    border-bottom: 2px solid #292b2c;
+    background: #fff;
+}
+.navbar{
+    padding: 10px 0;
+
+}
+.navbar-brand{         /*設定banner中的大標題*/
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 2em;
+    color: white;
+}
+.nav-item{             /*banner 中的幾個選項*/
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+/*banner 選項周遭的區塊  nav-item.active 所在的頁面*/
+.navbar-light .navbar-nav .nav-link .nav-item:hover,
+.navbar-light .navbar-nav .nav-link .nav-item.active{
+    background: #262626;
+    color: #fff;
+}
+.navbar-light .navbar-nav .nav-link .nav-item{
+    color: #262626;
+    padding: 5px 15px;
+}
+/*------responsive website setting the icon part----------*/
+.navbar-light .navbar-toggler {
+    /*border:none;*/
+    color: #fff;
+    border:2px solid #7f7f7f;
+    border-radius: 0;
+}
+/*----------topic page design --------------------------------------------*/
+
+#topic.container{
+    position:relative;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+#topic .col-md-12 h1{
+    font-size: 45px;
+    font-weight: 300;
+    line-height: 2;
+}
+
+#topic h1,h3{
+    color: #292b2c;
+}
+
+.animation1{
+    /*當你設定一個元素樣式為 box-sizing: border-box;，這個元素的內距和邊框將不會增加元素本身的寬度*/
+    box-sizing:border-box;
+    /*flexiblebox就可以實現真正意義上的流體佈局。只要給出相應屬性，瀏覽器會幫我們做額外的計算*/
+    /*CSS3 彈性盒子，又稱flexbox，是為了適應不同螢幕尺寸和顯示設備而生的佈局模式。針對許多應用而言，
+    不用 floats 的彈性盒子模型會比塊狀模型（block model）易用，彈性容器的邊緣也不會與內容的邊緣重疊。*/
+    display:-webkit-box;
+    display:flex;
+    /*文字區以下指令致中*/
+    -webkit-box-align:center;
+    align-items:center;
+    -webkit-box-pack:center;
+    justify-content:center;
+    overflow:hidden;
+    position: relative;
+    /*padding:3rem 16.66667%;*/
+    width:100%;
+    height:100vh;
+    min-height:30rem;
+
+}
+#topic .btn{
+    margin-top: 50px;
+}
+.btn{
+    font-size: 1.1rem;
+    padding: 7px 28px;
+    border-radius: 20px;
+    margin-left: 2rem;
+    background: #f05f5c;
+    border: 0;
+
+}
+
+#topic img{
+    position: relative;
+    max-height: 400px;
+    max-width: 400px;
+}
+.animation1,.animation1:after,.animation1:before{
+    -webkit-transition:all .25s ease-in-out;
+    transition:all .25s ease-in-out
+}
+.animation1:after,.animation1:before{
+    /*控制圖片的位置*/
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0
+}
+.animation1:before {  /*圖片上的控制*/
+    background: url("../image/mousky.jpg") center center;
+    background-size: cover;
+}
+.animation1:after{  /*滑鼠滑到變的顏色*/
+    /*background-color:rgba(0,0,0,.5);*/   /*orign color*/
+    background-color: rgba(109,216,252,0.5);
+    /*background-color: rgba(199,199,205,0.8);*/
+    opacity:0
+}
+.animation1:hover:after{opacity:1}
+
+/*更改子集z-index，讓文字到前面一層*/
+/*大於（>）只會影響到直接的小孩*/
+/**”号是通配符，即指，网页html中所有标签意思。*/
+.animation1>*{
+    position:relative;
+    z-index:3
+}
+
+
+

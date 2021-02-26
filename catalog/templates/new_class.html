@@ -1,0 +1,149 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<title>New Class</title>
+	<!-- Meta-Tags -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta name="keywords" content="Clear login Form a Responsive Web Template, Bootstrap Web Templates, Flat Web Templates, Android Compatible Web Template, Smartphone Compatible Web Template, Free Webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!-- //Meta-Tags -->
+	<!-- Stylesheets -->
+	<link href="css_login_register/font-awesome.css" rel="stylesheet">
+	<link href="css_login_register/style.css" rel='stylesheet' type='text/css' />
+	<!--// Stylesheets -->
+	<!--fonts-->
+	<!-- title -->
+	<!-- body -->
+	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=devanagari,latin-ext" rel="stylesheet">
+	<!--//fonts-->
+</head>
+
+<body>
+    <h1 style="font-family:fantasy">建立當期課程</h1>
+        
+	<div class="w3ls-login box box--big">
+		<!-- form starts here -->
+		<form action="" method="post"> {% csrf_token %}
+			<div class="agile-field-txt">
+				<label>
+					<i class="fa fa-user" aria-hidden="true"></i> Tutor </label>
+				<input type="text" name="tutor" required="" value="{{ user_account }}" readonly>
+            </div>
+			<div class="agile-field-txt">
+				<label>
+					<i class="fa fa-user" aria-hidden="true"></i> Student </label>
+				<input type="text" name="student" placeholder="Enter your student's account " required="" />
+            </div>
+			<div class="agile-field-txt">
+				<label>
+					<i class="fa fa-user" aria-hidden="true"></i> Subject: </label>
+				<select name="subject" required>
+					<option value="">請選擇科目</option>
+					<option value="mth">數學</option>
+					<option value="chn">國文</option>
+					<option value="eng">英文</option>
+					<option value="phy">物理</option>
+					<option value="chem">化學</option>
+					<option value="bio">生物</option>
+					<option value="es">地科</option>
+					<option value="p&c">理化</option>
+					<option value="prg">程式</option>
+					<option value="geo">地理</option>
+					<option value="his">歷史</option>
+					<option value="cvc">公民</option>
+					<option value="scl">社會</option>
+					<option value="art">藝術</option>
+					<option value="oth">其他</option>
+				</select><br>
+            </div>
+            <div class="agile-field-txt">
+                <label>
+                    <i class="fa fa-heart-o" aria-hidden="true"></i>Pay per hour</label>
+                <input type="number" name="pay_per_hour" placeholder=" Enter your pay per hour " required="" />
+            </div>
+            <div class="agile-field-txt">
+                    <label>
+                        <i class="fa fa-key" aria-hidden="true"></i> Start date </label>
+                    <input type="date" name="start_date" required="" />
+                </div>
+            <div class="agile-field-txt">
+				<label>
+					<i class="fa fa-key" aria-hidden="true"></i> End date </label>
+				<input type="date" name="end_date" required="" />
+            </div>
+			<div class="agile-field-txt">
+				<label>
+					<i class="fa fa-user" aria-hidden="true"></i> Time: </label>
+				<select name="day" id="day" required>
+					<option value="">請選擇星期</option>
+					<option value="1">星期一</option>
+					<option value="2">星期二</option>
+					<option value="3">星期三</option>
+					<option value="4">星期四</option>
+					<option value="5">星期五</option>
+					<option value="6">星期六</option>
+					<option value="7">星期日</option>
+				</select>
+				<input type="time" name="start_time" required="" />
+				<input type="time" name="end_time" required="" />
+				<input type="button" value="新增時間" onclick="addTime()"><br>
+            </div>
+	
+
+			<div class="w3ls-bot">
+				<div class="form-end">
+					<input type="submit" value="Register">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript"> 
+		function addTime(){ 
+		  var name = new Array("請選擇星期","星期一","星期二","星期三","星期四","星期五","星期六","星期日"); 
+		  var value = new Array("","1","2","3","4","5","6","7"); 
+		  var select = document.getElementById("subject"); 
+		  //select.length = 1;
+		  //select.options[0].selected = true;
+		  for(var x = 0;x<value.length;x++){ 
+			var option = document.createElement("option"); 
+			option.setAttribute("value",value[x]);
+			option.appendChild(document.createTextNode(name[x])); 
+			select.appendChild(option);
+		  } 
+		}
+	</script>
+	<!-- //form ends here -->
+	<!--copyright-->
+	<div class="copy-wthree">
+		<p>© 2018 Clear Login Form. All Rights Reserved | Design by
+			<a href="http://w3layouts.com/" target="_blank">W3layouts</a>
+		</p>
+	</div>
+	<!--//copyright-->
+	{% if messages %}
+		<script>
+			{% for msg in messages %}
+				alert('{{ msg.message }}');
+			{% endfor %}
+		</script>
+	{% endif %}
+</body>
+
+</html>

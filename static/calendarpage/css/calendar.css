@@ -1,0 +1,98 @@
+body{
+    background: #FFC857;
+    background: url("../image/water.jpg");
+    background-size: cover;
+}
+/*-------start banner design ---------*/
+header{
+    position: relative;  /*讓響應的下拉不會推擠下方的元素*/
+    z-index: 10;
+    width: 100%;
+    background: #FF715B;
+
+}
+
+.navbar-brand{         /*設定banner中的大標題*/
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1.9em;
+    color: rgb(0, 180, 171);
+}
+.navbar-brand img{
+    margin-top: 5px;
+}
+.nav-item{             /*banner 中的幾個選項*/
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+/*banner 選項周遭的區塊  nav-item.active 所在的頁面*/
+.navbar-light .navbar-nav .nav-link .nav-item:hover,
+.navbar-light .navbar-nav .nav-link .nav-item.active{
+    background: #262626;
+    color: #fff;
+}
+.navbar-light .navbar-nav .nav-link .nav-item{
+    color: #262626;
+    padding: 5px 15px;
+}
+/*------responsive website setting the icon part----------*/
+.navbar-light .navbar-toggler {
+    /*border:none;*/
+    color: #fff;
+    border:2px solid #7f7f7f;
+    border-radius: 0;
+}
+/*------------------------------*/
+#calendar{
+    margin-top: 50px;
+    background: white;
+}
+/*------------------------------*/
+.view_title{
+    font-family: 微軟正黑體 ;
+    margin-top: 40px;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+#view_part{
+    width: 100%;
+    height: 550px;
+    background: #9BBEC7;
+    margin-bottom: 100px;
+    overflow-y:auto;
+}
+
+/*-- 設定動態生成的div---*/
+.event_lis{
+    display: inline-block;
+    width:92%;
+    height:100px;
+    background:white;
+    margin-top: 30px;
+    margin-left: 4%;
+}
+.event_lis h2{
+    display: inline-block;
+    margin-top: 35px;
+    margin-left:35px;
+    color: black;
+    font-family: 微軟正黑體;
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+.event_lis button{
+    display: inline-block;
+    float: right;
+    padding: 5px 10px;
+    color: black;
+    margin-top: 34px;
+    margin-right: 30px;
+}
+.event_lis h3{
+    display: inline-block;
+    padding-left:60px;
+    color: black;
+    font-weight: bolder;
+
+}

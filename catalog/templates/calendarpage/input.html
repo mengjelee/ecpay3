@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增課程</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <style>
+        .mb-3 h2{
+            margin-top: 25px;
+            font-family: 微軟正黑體;
+            margin-bottom: 5px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="" method="post"> {% csrf_token %}
+            <h2>建立課程</h2>
+            <div class="mb-3">
+                <label for="student_id" class="form-label">學生id</label>
+                <input type="text" class="form-control" id="student_id" name="student_id" pattern="^[S]{1}[0-9]{5}" maxLength="6" oninput="setCustomValidity('');" required>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">科目</label>
+                <select name="subject" required>
+					<option value="">請選擇科目</option>
+					<option value="mth">數學</option>
+					<option value="chn">國文</option>
+					<option value="eng">英文</option>
+					<option value="phy">物理</option>
+					<option value="chem">化學</option>
+					<option value="bio">生物</option>
+					<option value="es">地科</option>
+					<option value="pnc">理化</option>
+					<option value="prg">程式</option>
+					<option value="geo">地理</option>
+					<option value="his">歷史</option>
+					<option value="cvc">公民</option>
+					<option value="scl">社會</option>
+					<option value="art">藝術</option>
+					<option value="oth">其他</option>
+				</select><br>
+            </div>
+            <div class="mb-3">
+                <label for="fee" class="form-label">單堂費用</label>
+                <input type="number" class="form-control" id="fee" name="fee" required>
+            </div>
+            <div class="mb-3">
+                <label for="classdate" class="form-label">上課日期</label><br>
+                <p style="display:inline" class="sd">開始：</p><input class="sd" type="date" name="start_date" id="start_date" required><br>
+                <p style="display:inline" class="ed">結束：</p><input class="ed" type="date" name="end_date" id="end_date" oninput="setCustomValidity('');" required>
+            </div>
+            <div class="mb-3" id="ct">
+                <label for="classtime" class="form-label">上課時間</label><br>
+            <div class="ctime" id="ctime" style="display:inline">
+				<select name="day0" id="day" required>
+					<option value="">請選擇星期</option>
+					<option value="1">星期一</option>
+					<option value="2">星期二</option>
+					<option value="3">星期三</option>
+					<option value="4">星期四</option>
+					<option value="5">星期五</option>
+					<option value="6">星期六</option>
+					<option value="7">星期日</option>
+				</select>
+                <input type="time" class="ct" id="start_time0" name="start_time0" required>
+                <input type="time" class="et" id="end_time0" name="end_time0" oninput="setCustomValidity('');" required>
+				<input type="button" value="新增時間" onclick="clone()"><br>
+            </div>
+			</div>
+
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary" onclick="checkcourse()">建立</button>
+                <button type="button" class="btn btn-danger" onclick="defaultInput()">取消</button>
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+		var counter = 1;
+        function checkcourse(){
+            // 檢查Student_ID
+			var sid=document.getElementById("student_id");
+			if (sid.validity.patternMismatch === true){
+				sid.value='';
+				sid.setCustomValidity("格式錯誤");
+			}
+			// 檢查日期
+			var ed=document.getElementById("end_date");
+			var sd=document.getElementById("start_date").value;
+			if (sd>=ed.value)
+				ed.setCustomValidity("結束日期應於開始日期後");
+			// 檢查時間
+            for(var i=0; i<counter; i++){
+				var et=document.getElementById(('end_time'+''+i+''));
+				var st=document.getElementById(('start_time'+''+i+'')).value;				
+				if (st>=et.value)
+					et.setCustomValidity("結束時間應於開始時間後");
+			}
+        }
+        function defaultInput(){
+            window.close();
+        }
+		function clone() {
+			var $row = $('#ctime');
+			var $ct = $('#ct');
+			var $clone = $row.clone(); //Making the clone
+			content = $row.innerHTML;
+			$clone.innerHTML = content;
+			//Change the id of the cloned elements, append the counter onto the ID 
+			$clone.find('input').each(function () {
+				if(this.type=='time'){
+					this.value='';
+					this.id = this.id.replace('0', ''+counter+'');
+					this.name = this.name.replace('0', ''+counter+'');
+				}
+				else if(this.type=='button'){
+					this.value='X';
+					this.onclick=del;
+				}
+			});
+			$clone.find('select').each(function () {
+				this.name = this.name.replace('0', ''+counter+'');
+			});
+			$clone.attr("id", ('ctime'+''+counter+''));
+			$clone.appendTo($ct);
+			counter++;
+		}
+		function del() {
+			counter--;
+			$(('#ctime'+''+counter+'')).remove();
+		}
+    </script>
+
+	{% if messages %}
+		<script>
+			{% for msg in messages %}
+				alert('{{ msg.message }}');
+			{% endfor %}
+		</script>
+	{% endif %}
+</body>
+</html>
