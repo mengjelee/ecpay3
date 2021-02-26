@@ -210,7 +210,7 @@ def changepw(request):
                 return HttpResponseRedirect(reverse('changepw'))
 
 
-def end_page():
+def end_page(request):
     if request.method == 'GET':
         return redirect(url_for('index'))
 
@@ -226,6 +226,6 @@ def end_page():
             return HttpResponseRedirect(reverse('calendar'))
 
 
-def end_return():
+def end_return(request):
     if request.method == 'POST':
         return '1|OK'
