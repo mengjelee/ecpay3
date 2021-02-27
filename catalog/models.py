@@ -96,11 +96,11 @@ class Class_details(models.Model):
         return f'{self.class_detail_id}, {self.class_serial}'
 
 class Payment(models.Model):
-    trad_no = models.CharField(max_length=100,primary_key=True)
-    trad_amt = models.IntegerField(null=True, blank=True)
-    trad_status =  models.CharField(max_length=100)
-    trad_time = models.TimeField(null=True)
-    CheckMacValue = models.CharField(max_length=100)
+    trade_no = models.CharField(max_length=100,primary_key=True)
+    trade_amt = models.IntegerField(null=True, blank=True)
+    trade_status =  models.CharField(max_length=100)
+    trade_time = models.TimeField(null=True)
+    CheckMacValue = models.CharField(max_length=300)
     def __str__(self):
         """String for representing the Model object."""
-        return f'{self.trad_no}, {self.trad_amt}'
+        return f'{self.trade_no}, {self.trade_status}'

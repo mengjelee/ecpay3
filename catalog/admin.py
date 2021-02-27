@@ -27,5 +27,5 @@ class Class_detailsAdmin(admin.ModelAdmin):
 
 @admin.register(Payment) 
 class Class_detailsAdmin(admin.ModelAdmin):
-    list_display = ('trad_no','trad_amt', 'trad_status', 'trad_time',
+    list_display = ('trade_no','trade_amt', 'trade_status', 'trade_time',
                     'CheckMacValue')
