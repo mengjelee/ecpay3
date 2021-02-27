@@ -99,7 +99,7 @@ class Payment(models.Model):
     trade_no = models.CharField(max_length=100,primary_key=True)
     trade_amt = models.IntegerField(null=True, blank=True)
     trade_status =  models.CharField(max_length=100)
-    trade_time = models.TimeField(null=True)
+    trade_time = models.CharField(max_length=100,default='no record')
     CheckMacValue = models.CharField(max_length=300)
     def __str__(self):
         """String for representing the Model object."""
