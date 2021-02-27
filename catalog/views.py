@@ -212,7 +212,7 @@ def changepw(request):
 
 def end_page(request):
     if request.method == 'GET':
-        paymenet = Payment.objects.create(trade_no =request.POST.get('TradeNo'), trade_amt =request.POST.get('TradeAmt'),trade_status='Failed',trade_time=request.POST.get('TradeDate'),CheckMacValue=request.POST.get('CheckMacValue'))
+        paymenet = Payment.objects.create(trade_no =request.POST.get('TradeNo'), trade_amt ='fail',CheckMacValue='fail')
         return HttpResponse('付款失敗')
 
     if request.method == 'POST':
