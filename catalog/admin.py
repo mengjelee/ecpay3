@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import User, Class, Class_DayTime, Class_details#Author, Genre, Book, BookInstance, 
+from .models import User, Class, Class_DayTime, Class_details, Payment
 
 # Register the user
 @admin.register(User)
@@ -24,3 +24,8 @@ class Class_DayTimeAdmin(admin.ModelAdmin):
 class Class_detailsAdmin(admin.ModelAdmin):
     list_display = ('class_detail_id','class_serial', 'class_date', 'fee',
                     'start_time','end_time', 'finish_or_not', 'description')
+
+@admin.register(Payment) 
+class Class_detailsAdmin(admin.ModelAdmin):
+    list_display = ('trad_no','trad_amt', 'trad_status', 'trad_time',
+                    'CheckMacValue')
