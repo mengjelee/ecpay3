@@ -1,0 +1,607 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>家教管理平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="keywords" content="Creature Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+	{% load static %}
+    <!-- Custom Theme files -->
+    <link href="{% static 'css/bootstrap.css' %}" type="text/css" rel="stylesheet" media="all">
+    <!-- color switch -->
+    <link href="{% static 'css/blast.min.css' %}" rel="stylesheet" />
+    <!-- portfolio -->
+    <link href="{% static 'css/portfolio.css' %}" type="text/css" rel="stylesheet" media="all">
+    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="all">
+    <!-- font-awesome icons -->
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <!-- online-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <script src="{% static 'js/jquery-2.2.3.min.js' %}"></script>
+    <script src="{% static 'js/responsiveslides.min.js' %}"></script>
+    <!-- Scrolling Nav JavaScript -->
+    <script src="{% static 'js/scrolling-nav.js' %}"></script>
+    <script src="{% static 'js/counter.js' %}"></script>
+    <script src="{% static 'js/jquery.picEyes.js' %}"></script>
+    <!-- start-smooth-scrolling -->
+    <script src="{% static 'js/move-top.js' %}"></script>
+    <script src="{% static 'js/easing.js' %}"></script>
+    <script src="{% static 'js/SmoothScroll.min.js' %}"></script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- color switch -->
+    <script src="{% static 'js/blast.min.js' %}"></script>
+    <!-- Bootstrap core JavaScript
+================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <!-- banner -->
+    <div id="home">
+        <!-- color scheme -->
+        <div class="blast-box">
+            <div class="blast-frame">
+                <p>color schemes</p>
+                <div class="blast-colors d-flex justify-content-center">
+                    <div class="blast-color">#23d48f</div>
+                    <div class="blast-color">#d3b800</div>
+                    <div class="blast-color">#18e7d3</div>
+                    <div class="blast-color">#e5902a</div>
+                    <div class="blast-color">#16d9e9</div>
+                    <!-- you can add more colors here -->
+                </div>
+                <p class="blast-custom-colors">Choose Custom color</p>
+                <input type="color" name="blastCustomColor" value="#d3b800">
+
+            </div>
+            <div class="blast-icon"><span class="fa fa-paint-brush" aria-hidden="true"></span></div>
+        </div>
+        <!-- //color scheme -->
+        <!-- header -->
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-expand-lg navbar-light navbar-fixed-top">
+                <h1>
+                    <a class="navbar-brand" >
+                        家教最簡易的管理
+                    </a>
+                </h1>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-lg-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">首頁<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item  mt-lg-0 mt-3">
+                            <a class="nav-link" href="#">關於我們</a>
+                        </li>
+                        <li class="nav-item mt-lg-0 mt-3">
+                            <a class="nav-link" href="#">常問問題</a>
+                        </li>
+                        <li class="nav-item dropdown mt-lg-0 mt-3">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                開始使用
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item scroll nav-link" href="#plans">最新消息</a>
+                                <a class="dropdown-item scroll nav-link" href="#team">我的課程</a>
+                                <a class="dropdown-item scroll nav-link" href="#portfolio">學習歷程</a>
+                                <a class="dropdown-item scroll nav-link" href="#posts">課程行事曆</a>
+                            </div>
+                        </li>
+                        <li class="nav-item  mt-lg-0 mt-3">
+                            <a class="nav-link" href="#">聯繫我們 </a>
+                        </li>
+                    </ul>
+                    <button type="button" class="btn  wthree-link-bnr bg-theme rounded-circle text-center mt-lg-0 mt-3" data-toggle="modal"
+                        aria-pressed="false" data-target="#exampleModal" data-blast="bgColor"> <span class="fa fa-user text-white"></span>
+                    </button>
+                </div>
+
+            </nav>
+        </header>
+        <!-- //header -->
+        <div class="callbacks_container">
+            <ul class="rslides" id="slider3">
+                <li class="banner1">
+                    <div class="container">
+                        <div class="banner-text">
+                            <div class="slider-info">
+                                <h3>家教管理平台</h3>
+                                <span class="line"></span>
+                                <p>使用我們的平台讓您輕鬆的管理家教活動</p>
+                                <a class="btn bg-theme mt-4 w3_pvt-link-bnr scroll" data-blast="bgColor" href="#about"
+                                    role="button">View
+                                    More</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- //banner -->
+    <!--  about -->
+    <section class="wthree-slide-btm pt-lg-5" id="about">
+        <div class="container pt-sm-5 pt-4">
+            <div class="row no-gutters">
+                <div class="col-lg-5">
+                    <div class="slide-banner">
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="bg-abt light-bg">
+                        <div class="container">
+                            <div class="title-desc  pb-sm-3">
+                                <h4 class="main-title-w3pvt">課程行事曆</h4>
+                                <p>helping animals & working on environmental issues.</p>
+                            </div>
+                            <div class="row flex-column mt-lg-4 mt-3">
+                                <div class="abt-grid">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="abt-icon" data-blast="bgColor">
+                                                <span class="fa fa-ravelry"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-9 pl-sm-0">
+                                            <div class="abt-txt ml-sm-0">
+                                                <h4>sanctus takimata </h4>
+                                                <p>Lo sea takimata sanctus est Lorem ipolor sit amet, no sea takimata
+                                                    sanctus est Loremsum dolor sit amet.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="abt-grid mt-4 pt-lg-2">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="abt-icon" data-blast="bgColor">
+                                                <span class="fa fa-laptop"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-9 pl-sm-0">
+                                            <div class="abt-txt ml-sm-0">
+                                                <h4>takimata sanctus</h4>
+                                                <p>Lo sea takimata sanctus est Lorem ipsum dolorsita.Lorem ipsum dolor
+                                                    sit amet,sed diam nonumy eirmod tempor invidunt ut labore et dolore
+                                                    magna aliquyam erat, At vero eos et accusam et justo duo dolores et
+                                                    ea
+                                                    rebum. Lorem ipsum dolor sit amet, no sea takimata sanctus est
+                                                    Lorem
+                                                    ipsum dolor sit amet. Stet clita kasd gubergren.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //about -->
+    <!--  about bottom -->
+    <section class="wthree-slide-btm pb-lg-5">
+        <div class="container pb-md-5 pb-4">
+            <div class="row flex-row-reverse no-gutters">
+                <div class="col-lg-5">
+                    <div class="ab-banner">
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="bg-abt">
+                        <div class="container">
+                            <div class="title-desc  pb-sm-3">
+                                <h4 class="main-title-w3pvt">學習歷程統計</h4>
+                                <p>helping animals & working on environmental issues.</p>
+                            </div>
+                            <div class="row flex-column mt-lg-4 mt-3">
+                                <div class="abt-grid">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="abt-icon" data-blast="bgColor">
+                                                <span class="fa fa-ravelry"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-9 pl-sm-0">
+                                            <div class="abt-txt ml-sm-0">
+                                                <h4>sanctus takimata </h4>
+                                                <p>Lo sea takimata sanctus est Lorem ipolor sit amet, no sea takimata
+                                                    sanctus est Loremsum dolor sit amet.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="abt-grid mt-4 pt-lg-2">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="abt-icon" data-blast="bgColor">
+                                                <span class="fa fa-laptop"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-9 pl-sm-0">
+                                            <div class="abt-txt ml-sm-0">
+                                                <h4>takimata sanctus</h4>
+                                                <p>Lo sea takimata sanctus est Lorem ipsum dolorsita.Lorem ipsum dolor
+                                                    sit amet,sed diam nonumy eirmod tempor invidunt ut labore et dolore
+                                                    magna aliquyam erat, At vero eos et accusam et justo duo dolores et
+                                                    ea
+                                                    rebum. Lorem ipsum dolor sit amet, no sea takimata sanctus est
+                                                    Lorem
+                                                    ipsum dolor sit amet. Stet clita kasd gubergren.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //about boottom -->
+    <!-- stats -->
+    <section class="w3_stats py-sm-5 py-4" id="stats">
+        <div class="container">
+            <div class="py-lg-5 w3-stats">
+                <h2 class="w3pvt-title">詳細透明的課程費用結算及多元付款方式
+                </h2>
+                <p class="my-4 text-white">
+                    由我們幫您結算學費，詳細透明。綠界科技幫您處理付款，多種付款方式一鍵滿足。</p>
+                <div class="row py-4">
+                    <div class="col-md-4 col-6">
+                        <div class="counter">
+                            <span class="fa fa-smile-o"></span>
+                            <div class="timer count-title count-number mt-2 text-white" data-to="297" data-speed="1500"></div>
+                            <p class="count-text text-uppercase text-white">使用學員數</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-6">
+                        <div class="counter">
+                            <span class="fa fa-users"></span>
+                            <div class="timer count-title count-number mt-2 text-white" data-to="194" data-speed="1500"></div>
+                            <p class="count-text text-uppercase text-white">使用家教數</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-6 mt-md-0 mt-4">
+                        <div class="counter">
+                            <span class="fa fa-database"></span>
+                            <div class="timer count-title count-number mt-2 text-white" data-to="2298" data-speed="1500"></div>
+                            <p class="count-text text-uppercase text-white">已協助處理的課程費用</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- //stats -->
+    <!-- services -->
+    <div class="w3lspvt-about py-md-5 py-5" id="services">
+        <div class="container pt-lg-5">
+            <div class="title-desc text-center pb-sm-3">
+                <h3 class="main-title-w3pvt">輕鬆一站式完善你的家教生活</h3>
+                <p>想知道有哪些老師在這裡嗎？</p>
+            </div>
+            <div class="w3lspvt-about-row row  text-center pt-md-0 pt-5 mt-lg-5">
+                <div class="col-lg-4 col-sm-6 w3lspvt-about-grids">
+                    <div class="p-md-5 p-sm-3">
+                        <span class="fa fa-map-marker" data-blast="borderColor"></span>
+                        <h4 class="mt-2 mb-3" data-blast="color">國文</h4>
+                        <p>隨機顯示幾個家教</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 w3lspvt-about-grids  border-left border-right my-sm-0 my-5">
+                    <div class="p-md-5 p-sm-3">
+                        <span class="fa fa-check-circle-o" data-blast="borderColor"></span>
+                        <h4 class="mt-2 mb-3" data-blast="color">英文</h4>
+                        <p>隨機顯示幾個家教</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 w3lspvt-about-grids">
+                    <div class="p-md-5 p-sm-3">
+                        <span class="fa fa-paw" data-blast="borderColor"></span>
+                        <h4 class="mt-2 mb-3" data-blast="color">數學</h4>
+                        <p>隨機顯示幾個家教</p>
+                    </div>
+                </div>
+            </div>
+            <div class="w3lspvt-about-row border-top row text-center pt-md-0 pt-5 mt-md-0 mt-5">
+                <div class="col-lg-4 col-sm-6 w3lspvt-about-grids">
+                    <div class="p-md-5 p-sm-3 col-label">
+                        <span class="fa fa-tint" data-blast="borderColor"></span>
+                        <h4 class="mt-2 mb-3" data-blast="color">社會科</h4>
+                        <p>隨機顯示幾個家教</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 w3lspvt-about-grids mt-lg-0 mt-md-3 border-left border-right pt-sm-0 pt-5">
+                    <div class="p-md-5 p-sm-3 col-label">
+                        <span class="fa fa-handshake-o" data-blast="borderColor">
+                        </span>
+                        <h4 class="mt-2 mb-3" data-blast="color">自然科</h4>
+                        <p>隨機顯示幾個家教</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 w3lspvt-about-grids pt-md-0 pt-5">
+                    <div class="p-md-5 p-sm-3 col-label">
+                        <span class="fa fa-bar-chart" data-blast="borderColor"></span>
+                        <h4 class="mt-2 mb-3" data-blast="color">其他科目</h4>
+                        <p>隨機顯示幾個家教</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //services -->
+    <!-- slide -->
+   
+   
+    <!-- footer -->
+    <footer class="cpy-right bg-theme" data-blast="bgColor">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="wthree-social">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <span class="fa fa-facebook-f icon_facebook"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa fa-twitter icon_twitter"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa fa-dribbble icon_dribbble"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa fa-google-plus icon_g_plus"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-lg-right mt-lg-0 mt-4">
+                    <p>© 2018 Creature. All rights reserved | Design by
+                        <a href="http://w3layouts.com"> W3layouts.</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- //footer -->
+    <!-- login  -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Signin</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="login/" method="post" class="p-sm-3"> {% csrf_token %}
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">用戶</label>
+                            <input type="text" class="form-control" placeholder="" name="account" id="recipient-name"
+                                required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-form-label">密碼</label>
+                            <input type="password" class="form-control" placeholder="" name="password" id="password"
+                                required="">
+                        </div>
+                        <div class="right-w3l">
+                            <input type="submit" class="form-control" value="Login">
+                        </div>
+                        <div class="row sub-w3l my-3">
+                            <div class="col-sm-6 sub-w3_pvt">
+                                <input type="checkbox" id="brand1" value="">
+                                <label for="brand1">
+                                    <span></span>Remember me?</label>
+                            </div>
+                            <div class="col-sm-6 forgot-w3l text-sm-right">
+                                <a href="#" class="text-secondary">忘記密碼?</a>
+                            </div>
+                        </div>
+                        <p class="text-center dont-do modal-footer1">Don't have an account?
+                            <a href="#" data-toggle="modal" data-target="#exampleModal1" class="font-weight-bold"
+                                data-blast="color">
+                                現在註冊</a>
+
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //login -->
+    <!-- register -->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1">Register</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="register/" method="post" class="p-sm-3"> {% csrf_token %}
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">用戶名稱</label>
+                            <input type="text" class="form-control" placeholder="" name="name" id="recipient-rname"
+                                required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-email" class="col-form-label">Email</label>
+                            <input type="email" class="form-control" placeholder="" name="email" id="recipient-email"
+                                required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="password1" class="col-form-label">密碼</label>
+                            <input type="password" class="form-control" placeholder="" name="password" id="password1"
+                                required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="password2" class="col-form-label">再次確認密碼</label>
+                            <input type="password" class="form-control" placeholder="" name="CPassword" id="password2"
+                                required="">
+                        </div>
+                        <div class="sub-w3l">
+                            <div class="sub-w3_pvt">
+                                <input type="radio" name="status" value="2" id="student" required>
+									<label for="student" class="mb-3">student</label><span></span>                               
+                                <input type="radio" name="status" value="1" id="tutor">
+									<label for="tutor" class="mb-3">tutor</label>                                
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="bank_no" class="col-form-label">銀行代號</label>
+                            <input type="text" class="form-control" placeholder="" name="bank_no" id="bank_no"
+                                required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="bank_account" class="col-form-label">匯款帳號</label>
+                            <input type="text" class="form-control" placeholder="" name="bank_account" id="bank_account"
+                                required="">
+                        </div>
+                        <div class="sub-w3l">
+                            <div class="sub-w3_pvt">
+                                <input type="checkbox" id="accept_term" value="" required>
+                                <label for="accept_term" class="mb-3">
+                                    <span></span>I Accept to the Terms & Conditions</label>
+                            </div>
+                        </div>
+                        <div class="right-w3l">
+                            <input type="submit" class="form-control" value="Register" onclick="">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- // register -->
+
+    <!-- script for password match -->
+    <script>
+        window.onload = function () {
+            document.getElementById("password1").onchange = validatePassword;
+            document.getElementById("password2").onchange = validatePassword;
+        }
+
+        function validatePassword() {
+            var pass2 = document.getElementById("password2").value;
+            var pass1 = document.getElementById("password1").value;
+            if (pass1 != pass2)
+                document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+            else
+                document.getElementById("password2").setCustomValidity('');
+            //empty string means no validation error
+        }
+    </script>
+    <!-- script for password match -->
+    <!-- Banner  Responsiveslides -->
+    <script>
+        // You can also use"$(window).load(function() {"
+        $(function () {
+            // Slideshow 4
+            $("#slider3").responsiveSlides({
+                auto: true,
+                pager: true,
+                nav: false,
+                speed: 500,
+                namespace: "callbacks",
+                before: function () {
+                    $('.events').append("<li>before event fired.</li>");
+                },
+                after: function () {
+                    $('.events').append("<li>after event fired.</li>");
+                }
+            });
+
+        });
+    </script>
+    <!-- //Banner  Responsiveslides -->
+    <!-- portfolio -->
+    <script>
+        $(function () {
+            //picturesEyes($('.demo li'));
+            $('.demo li').picEyes();
+        });
+    </script>
+    <!-- //portfolio -->
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+        $(document).ready(function () {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear' 
+            };
+            */
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+    </script>
+	{% if messages %}
+		<script>
+			{% for msg in messages %}
+				alert('{{ msg.message }}');
+			{% endfor %}
+		</script>
+	{% endif %}
+</body>
+
+</html>
