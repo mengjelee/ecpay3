@@ -218,18 +218,18 @@ def changepw(request):
 
 def end_page(request):
     if request.method == 'GET':
-        #paymenet = Payment.objects.create(trade_no =request.POST.get('TradeNo'), trade_amt =0,CheckMacValue='fail')
+        paymenet = Payment.objects.create(trade_no =request.POST.get('TradeNo'), trade_amt =0,CheckMacValue='fail')
         return HttpResponse('付款失敗')
 
     if request.method == 'POST':
         result = request.POST.get('RtnMsg')
         if result == 'Succeeded':
-            #paymenet = Payment.objects.create(trade_no =request.POST.get('TradeNo'), trade_amt =request.POST.get('TradeAmt'),trade_status='Succeeded',trade_time=request.POST.get('TradeDate'),CheckMacValue=request.POST.get('CheckMacValue'))
+            paymenet = Payment.objects.create(trade_no =request.POST.get('TradeNo'), trade_amt =request.POST.get('TradeAmt'),trade_status='Succeeded',trade_time=request.POST.get('TradeDate'),CheckMacValue=request.POST.get('CheckMacValue'))
             return HttpResponse('付款成功！')
 
         # 判斷失敗
         else:
-            #paymenet = Payment.objects.create(trade_no =request.POST.get('TradeNo'), trade_amt =request.POST.get('TradeAmt'),trade_status='Failed',trade_time=request.POST.get('TradeDate'),CheckMacValue=request.POST.get('CheckMacValue'))
+            paymenet = Payment.objects.create(trade_no =request.POST.get('TradeNo'), trade_amt =request.POST.get('TradeAmt'),trade_status='Failed',trade_time=request.POST.get('TradeDate'),CheckMacValue=request.POST.get('CheckMacValue'))
             return HttpResponse('付款失敗')
 
 
