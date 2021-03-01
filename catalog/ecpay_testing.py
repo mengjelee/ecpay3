@@ -130,4 +130,3 @@ def main(context):
 		return html
 	except Exception as error:
 		print('An exception happened: ' + str(error))
-
