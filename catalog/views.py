@@ -14,7 +14,7 @@ def ecpay_view(request):
         'user_name': request.COOKIES['user_name'],
         'user_account': request.COOKIES['user_account'],
     }
-   user_id = request.COOKIES['user_id']
+    user_id = request.COOKIES['user_id']
     class_ = Class.objects.filter(tutor = user_id).first()
     class_serial = class_.class_serial#從前端接收
     context['class_serial'] = class_serial
