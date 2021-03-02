@@ -8,8 +8,7 @@ spec = importlib.util.spec_from_file_location(
 module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
 from datetime import datetime
-from django.http import HttpResponseRedirect, HttpResponse
-from datetime import datetime, timedelta
+
 def main(context):
 	# 第二個需要修改的，商品資訊
 	order_params = {
@@ -17,21 +16,21 @@ def main(context):
 		'StoreID': '',
 		'MerchantTradeDate': datetime.now().strftime("%Y/%m/%d %H:%M:%S"),
 		'PaymentType': 'aio',
-		'TotalAmount': 2000,         # 商品金額
+		'TotalAmount': context['total'],         # 商品金額
 		'TradeDesc': '訂單測試',      # 商品描述
-		'ItemName': context['user_name'],#'商品1#商品2',    # 商品名稱，用井字號當分行
-		'ReturnURL': 'https://ecpay3.herokuapp.com/catalog/ecpay/end_return', # 顧客填完付款資料後的跳轉頁面
+		'ItemName': context['class_serial'],#'商品1#商品2',    # 商品名稱，用井字號當分行
+		'ReturnURL': 'https://ecpay3.herokuapp.com/catalog/ecpay/end_return', # 顧客填完付款資料後的跳轉頁面https://www.ecpay.com.tw/return_url.php
 		'ChoosePayment': 'ALL',      # 顧客的付費方式
         
         # 結帳後，先導到 OrderResultURL，從綠界頁面跳回的頁面
         # 如果沒有參數才會跳轉到 ClientBackURL
-		'ClientBackURL': 'https://ecpay3.herokuapp.com/catalog/ecpay/end_page',  #暫定回日曆
+		'ClientBackURL': 'https://ecpay3.herokuapp.com/catalog/ecpay/end_page',#http://127.0.0.1:8000/catalog/ecpay/end_page
 		'ItemURL': 'https://www.ecpay.com.tw/item_url.php',     # 商品資訊頁面
 		'Remark': '交易備註',         # 備註文字
 		'ChooseSubPayment': '',
         
         # 結帳成功/失敗後的結果頁面，告知顧客本次的結帳結果
-        'OrderResultURL': 'https://ecpay3.herokuapp.com/catalog/ecpay/end_page',  #暫定回日曆 
+        'OrderResultURL': 'https://ecpay3.herokuapp.com/catalog/ecpay/end_page', #https://www.ecpay.com.tw/order_result_url.php
 		'NeedExtraPaidInfo': 'Y',
 		'DeviceSource': '',
 		'IgnorePayment': '',

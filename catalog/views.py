@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_protect
 from .ecpay_testing import main
 # Create your views here.
 from .models import User, Class, Class_DayTime, Class_details, Payment #Book, Author, BookInstance, Genre,
@@ -6,21 +7,21 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib import messages
 from datetime import datetime, timedelta
-from django.forms.models import model_to_dict
-
+from django.db.models import Sum
 
 def ecpay_view(request):
-    if request.COOKIES != None: 
-        try:
-            context = {
-                'user_name': request.COOKIES['user_name'],
-                'user_email': request.COOKIES['user_email'],
-                'user_status': request.COOKIES['user_status'],            
-            }
-        except:
-            return HttpResponse('User undifined.') 
+    context = {
+        'user_name': request.COOKIES['user_name'],
+        'user_account': request.COOKIES['user_account'],
+    }
+    class_serial = 'C24mth0015'#從前端接收
+    context['class_serial'] = class_serial
+    #價格計算
+    c = Class.objects.get(class_serial = class_serial)
+    result = Class_details.objects.filter(class_serial = c).aggregate(total = Sum('fee'))
+    context.update(result)
+    #if request.COOKIES != None:
     return HttpResponse(main(context))
-    #return HttpResponse(main())
 
 def index(request):
     # Render the HTML template index.html with the data in the context variable
@@ -90,15 +91,14 @@ def homepage(request):
 
 def calendar(request):
     teacher_id = request.COOKIES['user_id']
-    course = Class.objects.filter(tutor=teacher_id)
-    course_detail = []
-    for c in course:
-        course_detail.append(Class_details.objects.filter(class_serial=c))
+    courses = Class.objects.filter(tutor=teacher_id)
     course_value = Class.objects.filter(tutor=teacher_id).values()
-    context = [entry for entry in course_value]
-    #counter = 'ccc'#len(context)
-    #context = {'counter':counter}
-    return render(request, 'calendarpage/calendar.html', {'context':context})#{'course':course, 'course_detail':course_detail}
+    course = [entry for entry in course_value]
+    course_detail = []
+    for c in courses:
+        detail_value = Class_details.objects.filter(class_serial=c).values()
+        course_detail.extend([entry for entry in detail_value])
+    return render(request, 'calendarpage/calendar.html', {'course':course, 'course_detail':course_detail})
 
 def new_course(request):
     if request.method == 'GET':
@@ -171,7 +171,7 @@ def editdata(request):
                     'user_email': request.COOKIES['user_email'],
                     'user_status': request.COOKIES['user_status'],
                     'user_card_number': request.COOKIES['user_card_number'],
-                }
+                } 
             except:
                 return HttpResponse('User undifined.') 
         return render(request, 'editdata.html', context)
@@ -216,22 +216,29 @@ def changepw(request):
                 messages.error(request, '請重新輸入密碼')
                 return HttpResponseRedirect(reverse('changepw'))
 
+def success_pay(request):
+    return render(request, 'success.html')
+
+def fail_pay(request):
+    return render(request, 'fail.html')
+#@csrf_protect
 def end_page(request):
     if request.method == 'GET':
         paymenet = Payment.objects.create(trade_no =request.POST.get('TradeNo'), trade_amt =0,CheckMacValue='fail')
-        return HttpResponse('付款失敗')
+        return HttpResponseRedirect(reverse('fail_pay'))
 
     if request.method == 'POST':
         result = request.POST.get('RtnMsg')
         if result == 'Succeeded':
             paymenet = Payment.objects.create(trade_no =request.POST.get('TradeNo'), trade_amt =request.POST.get('TradeAmt'),trade_status='Succeeded',trade_time=request.POST.get('TradeDate'),CheckMacValue=request.POST.get('CheckMacValue'))
-            return HttpResponse('付款成功！')
-
+            class_serial = request.POST.get('ItemName')
+            c = Class.objects.get(class_serial = class_serial)
+            c.update(trade_no=paymenet, pay_or_not = True)
+            return HttpResponseRedirect(reverse('success_pay'))
         # 判斷失敗
         else:
             paymenet = Payment.objects.create(trade_no =request.POST.get('TradeNo'), trade_amt =request.POST.get('TradeAmt'),trade_status='Failed',trade_time=request.POST.get('TradeDate'),CheckMacValue=request.POST.get('CheckMacValue'))
-            return HttpResponse('付款失敗')
-
+            return HttpResponseRedirect(reverse('fail_pay'))
 
 def end_return(request):
     if request.method == 'POST':
