@@ -14,7 +14,9 @@ def ecpay_view(request):
         'user_name': request.COOKIES['user_name'],
         'user_account': request.COOKIES['user_account'],
     }
-    class_serial = 'C24mth0015'#從前端接收
+   user_id = request.COOKIES['user_id']
+    class_ = Class.objects.filter(tutor = user_id).first()
+    class_serial = class_.class_serial#從前端接收
     context['class_serial'] = class_serial
     #價格計算
     c = Class.objects.get(class_serial = class_serial)
@@ -113,7 +115,7 @@ def new_course(request):
             fee = request.POST.get('fee')
             start_date = request.POST.get('start_date')
             end_date = request.POST.get('end_date')
-            class_id = User.objects.count()
+            class_id = Class.objects.count()
             course = Class.objects.create(class_id = class_id, tutor = teacher_id, student = student_id, subject = subject, 
                                         pay_per_class = fee, start_date = start_date, end_date = end_date)
             # 新增課程日
@@ -231,9 +233,9 @@ def end_page(request):
         result = request.POST.get('RtnMsg')
         if result == 'Succeeded':
             paymenet = Payment.objects.create(trade_no =request.POST.get('TradeNo'), trade_amt =request.POST.get('TradeAmt'),trade_status='Succeeded',trade_time=request.POST.get('TradeDate'),CheckMacValue=request.POST.get('CheckMacValue'))
-            class_serial = request.POST.get('ItemName')
-            c = Class.objects.get(class_serial = class_serial)
-            c.update(trade_no=paymenet, pay_or_not = True)
+            # class_serial = request.POST.get('ItemName')
+            # c = Class.objects.get(class_serial = class_serial)
+            # c.update(trade_no=paymenet, pay_or_not = True)
             return HttpResponseRedirect(reverse('success_pay'))
         # 判斷失敗
         else:
