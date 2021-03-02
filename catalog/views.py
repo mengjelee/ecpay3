@@ -142,7 +142,7 @@ def new_course(request):
             while(len(serial_no)!=4):
                 serial_no = '0' + serial_no
             course.class_serial = serial + serial_no
-            course.save()
+            
             # 新增課程細項
             class_daytime = Class_DayTime.objects.filter(class_serial = course)            
             date_end = datetime.strptime(end_date, "%Y-%m-%d")
@@ -157,7 +157,8 @@ def new_course(request):
                             Class_details.objects.create(class_serial = course, class_date = date2add, fee = fee,
                                                          start_time = start_time, end_time = end_time)
                             date2add += timedelta(days=7)
-                        break                                
+                        break    
+            course.save()                            
             messages.error(request, '成功新增課程')
             return HttpResponseRedirect(reverse('calendar'))
         else:
