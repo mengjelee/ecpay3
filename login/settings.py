@@ -42,9 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'catalog.apps.CatalogConfig',
-    'fontawesome-free',
-    'django_icons',
+    'catalog.apps.CatalogConfig', 
 ]
 
 MIDDLEWARE = [
@@ -150,27 +148,4 @@ MESSAGE_TAGS = {
     messages.SUCCESS: 'alert-success',
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
-}
-
-DJANGO_ICONS = {
-'DEFAULTS': {
-'renderer': 'fontawesome',
-},
-'RENDERERS': {
-'fontawesome': 'FontAwesomeRenderer',
-'bootstrap3': 'Bootstrap3Renderer',
-},
-'ICONS': {
-'delete': 'trash',
-'edit': {
-'name': 'pencil',
-'title': 'Edit',
-},
-'feather': {
-'renderer': 'tests.app.renderers.CustomSvgRenderer',
-},
-'paperplane': {
-'renderer': 'tests.app.renderers.CustomSvgRenderer',
-}
-},
 }
