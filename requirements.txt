@@ -1,3 +1,4 @@
+django-icons
 fontawesome-free
 requests
 psycopg2

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'catalog.apps.CatalogConfig',
     'fontawesome-free',
+    'django_icons',
 ]
 
 MIDDLEWARE = [
