@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>calendar</title>
+    <!-- using bootstrap tools(for RWD)-->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="javascript/jquery-3.5.1.min.js"></script>
+    <script src="javascript/bootstrap.min.js"></script>
+
+    <!-- using fullcalendar.js to create a calendar-->
+    <script src="javascript/moment.js"></script>
+	<script src="javascript/DateFormat.js"></script>
+    <script src=" fullcalendar-5.5.1/lib/main.js"></script>
+    <link rel="stylesheet" href="css/resetbrowser.css">
+    <link rel='stylesheet' type='text/css' href='fullcalendar-5.5.1/lib/main.css' />
+    <link rel="stylesheet" href="css/calendar.css">
+</head>
+
+<body>
+<!-- header part of code-->
+<header>
+
+    <div class="container">
+        <!-- navbar from bootstrap (code) -->
+        <nav class="navbar navbar-expand-lg navbar-dark"> <!-- orign navbar-light -->
+            <a class="navbar-brand" href="#">
+                日曆安排
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-lg-auto">                             <!-- ml-lg-auto 讓選項向右對齊 -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">返回前頁</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">家教日程<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">會員中心</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <script>
+
+    </script>
+
+</header>
+
+<!-- calendar part start-->
+<div class="container">
+    <div id="calendar">
+
+    </div>
+</div>
+
+<!-- This part list out the tutor event-->
+<div class="container">
+    <h2 class="view_title">課程列表</h2>
+    <div id="view_part">
+
+    </div>
+</div>
+
+<!-- fullcalendar.js 的相關參數設定，各項觸發程式 -->
+
+<script>
+    /*------你給我的(我沒全抄-------------*/
+    var giveme= [
+        {class_detail_id: 63,class_serial_id:8,class_date:'March 3, 2021',class_name:'test1'},
+        {class_detail_id: 64,class_serial_id:10,class_date:'March 5, 2021',class_name:'test2'},
+    ];
+    /*------------------------------------*/
+    /*---抓出日曆要的--*/
+    var title_get=[];
+    var time_get=[];
+
+
+
+    /*預設原始有的事件*/
+    var list1 = [
+        {  title: "3",date: 'March 5, 2021'},
+        {  title: "5",date: 'March 6, 2021' },
+        {  title: "6",date: 'March 7, 2021' }
+    ];
+
+    /*把新增的塞進去*/
+    var i;
+    for(i=0;i<giveme.length;i++)
+    {
+        title_get[i] = giveme[i].class_name;
+        time_get[i] = giveme[i].class_date;
+        list1.push({title: title_get[i],date: (new Date(time_get[i])).format("yyyy-MM-dd")});
+		console.log((new Date(time_get[i])).format("yyyy-MM-dd")); //hh:mm:ss
+    }
+
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            var calendarEl = document.getElementById('calendar');
+            //fullcalendar.js提供的基本設定
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                height: 500,
+                selectable: true,
+                themeSystem: 'standard',
+                headerToolbar: {
+
+                    left: 'dayGridMonth,timeGridWeek,listMonth AddEvent',
+                    center: 'title',
+                    right: 'DeleteEvent prevYear,prev,next,nextYear',
+                    //right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth',
+                },
+                dayMaxEvents: true,
+
+                events: list1,
+                //資料庫裡的事件，可用json php 等等
+                // 目前直接預設接入 fullcalendar提供的json
+
+                // 點擊日曆所觸發的事件
+                dateClick: function(info) {
+                    //藉由點擊的日期位置 將時間存入data
+                    var date = new Date(info.dateStr + 'T00:00:00'); // will be in local time
+                    var topic = "test";
+
+                    //點擊後觸發開啟視窗的function 開啟input.html
+                    openWindow('input.html',"Win",'width=400 , height=470');
+
+                    // 判斷日期以及標題資料的正確性
+                    if (!isNaN(date.valueOf()) && topic != null) { // valid?
+                        ;
+                        // 藉由插件提供的addEvent方法在日曆上新增事件
+                        calendar.addEvent({
+                            /*id:,*/
+                            title: topic,
+                            start: date,
+                            allDay: true,
+							editable: true
+                        });
+
+                        /*---add_event_onweb 函式於下方顯示列 顯示新增的事件--*/
+                        add_event_onweb(topic,date);
+
+                    } else {
+                        alert('輸入錯誤請再次輸入');
+                    }
+                },
+                //對於上方的按鈕進行定義
+                customButtons: {
+                    AddEvent:{
+                        text: '新增活動',
+                        //這邊先暫時自訂數值
+                        click:function (){
+                            openWindow('input.html',"Win",'width=400 , height=470');
+                            calendar.addEvent({
+                                id: "test",
+                                title: "我是測試",
+                                start: "2021-02-11T12:30:00Z",
+                                allDay: true,
+                            })
+                            add_event_onweb("test","test");
+                        }
+                    },
+                    DeleteEvent:{
+                        // delete event 需要先取得日曆事件的id
+                        text: '刪除活動',
+                        click: function (){
+                            openWindow('del_event.html',"Win",'width=400 , height=470');
+                        }
+                    }
+                },
+
+            });
+            calendar.render();
+        });
+
+
+
+</script>
+
+<!-- 建立 input.html的課程建立視窗-->
+<script>
+    //參數依序為 開啟url 設定id值 長寬設定
+    function openWindow(url, id, args) {
+        window.open(url,id, args);
+    }
+</script>
+
+<!-- 刪除日曆事件的function-->
+<script>
+    //傳入要刪除事件的 event_ID
+    function delete_event(event_ID)
+    {
+        //藉由event_ID 來刪除 日曆上的event (不包含資料庫與下方顯示部分)
+        var del_event = calendar.getEventById(event_ID);
+        del_event.remove();
+    }
+</script>
+
+<!-- 動態輸出上方日曆的事件的javascript -->
+<script>
+    function add_event_onweb(classname,c_date) {
+        var before = document.getElementById("view_part")
+        var Odiv=document.createElement('div');             //建立一個div\
+        var OH2=document.createElement('h2');               //建立一個div
+        var OH3 = document.createElement('h3');
+        var OH3_2 = document.createElement('h3');
+        var OH3_3 = document.createElement('h3');
+        var OBut = document.createElement('button');
+
+        before.appendChild(Odiv);                           /*在viewpart 後面新增 div*/
+        Odiv.className="event_lis";                         //div的class為Box
+
+        Odiv.appendChild(OH2);
+        OH2.append(classname);
+
+        Odiv.appendChild(OH3);
+        OH3.append("老師名稱");
+
+        Odiv.appendChild(OH3_2);
+        OH3_2.append("上課時數");
+
+        Odiv.appendChild(OH3_3);
+        OH3_3.append("學生ID")
+
+
+        Odiv.appendChild(OBut);
+        OBut.append("繳費");
+
+        OBut.onclick
+    }
+</script>
+
+
+</body>
+</html>

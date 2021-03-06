@@ -24,36 +24,36 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         }
     </script>
 	{% load static %}
-    <!-- Custom Theme files -->
+	<!-- Custom Theme files -->
     <link href="{% static 'css/bootstrap.css' %}" type="text/css" rel="stylesheet" media="all">
     <!-- color switch -->
-    <link href="{% static 'css/blast.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/blast.min.css' %} " rel="stylesheet" />
     <!-- portfolio -->
-    <link href="{% static 'css/portfolio.css' %}" type="text/css" rel="stylesheet" media="all">
-    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="all">
+    <link href="{% static 'css/portfolio.css' %} " type="text/css" rel="stylesheet" media="all">
+    <link href="{% static 'css/style.css' %} " type="text/css" rel="stylesheet" media="all">
     <!-- font-awesome icons -->
-    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %} " rel="stylesheet">
     <!-- online-fonts -->
     <link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-    <script src="{% static 'js/jquery-2.2.3.min.js' %}"></script>
-    <script src="{% static 'js/responsiveslides.min.js' %}"></script>
+    <script src="{% static 'js/jquery-2.2.3.min.js' %} "></script>
+    <script src="{% static 'js/responsiveslides.min.js' %} "></script>
     <!-- Scrolling Nav JavaScript -->
-    <script src="{% static 'js/scrolling-nav.js' %}"></script>
-    <script src="{% static 'js/counter.js' %}"></script>
-    <script src="{% static 'js/jquery.picEyes.js' %}"></script>
+    <script src="{% static 'js/scrolling-nav.js' %} "></script>
+    <script src="{% static 'js/counter.js' %} "></script>
+    <script src="{% static 'js/jquery.picEyes.js' %} "></script>
     <!-- start-smooth-scrolling -->
-    <script src="{% static 'js/move-top.js' %}"></script>
-    <script src="{% static 'js/easing.js' %}"></script>
-    <script src="{% static 'js/SmoothScroll.min.js' %}"></script>
+    <script src="{% static 'js/move-top.js' %} "></script>
+    <script src="{% static 'js/easing.js' %} "></script>
+    <script src="{% static 'js/SmoothScroll.min.js' %} "></script>
     <!-- //smooth-scrolling-of-move-up -->
     <!-- color switch -->
-    <script src="{% static 'js/blast.min.js' %}"></script>
+    <script src="{% static 'js/blast.min.js' %} "></script>
     <!-- Bootstrap core JavaScript
 ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %} "></script>
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -93,13 +93,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-lg-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">首頁<span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="#i1">首頁<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item  mt-lg-0 mt-3">
-                            <a class="nav-link" href="#">關於我們</a>
+                            <a class="nav-link" href="#i2">本站特色</a>
                         </li>
                         <li class="nav-item mt-lg-0 mt-3">
-                            <a class="nav-link" href="#">常問問題</a>
+                            <a class="nav-link" href="#i3">平台用戶</a>
                         </li>
                         <li class="nav-item dropdown mt-lg-0 mt-3">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -114,7 +114,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </div>
                         </li>
                         <li class="nav-item  mt-lg-0 mt-3">
-                            <a class="nav-link" href="#">聯繫我們 </a>
+                            <a class="nav-link" href="#i5">聯繫我們 </a>
                         </li>
                     </ul>
                     <button type="button" class="btn  wthree-link-bnr bg-theme rounded-circle text-center mt-lg-0 mt-3" data-toggle="modal"
@@ -127,8 +127,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <!-- //header -->
         <div class="callbacks_container">
             <ul class="rslides" id="slider3">
-                <li class="banner1">
-                    <div class="container">
+                <li class="banner2">
+                    <div id="i1" class="container">
                         <div class="banner-text">
                             <div class="slider-info">
                                 <h3>家教管理平台</h3>
@@ -154,11 +154,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </div>
                 </div>
                 <div class="col-lg-7">
-                    <div class="bg-abt light-bg">
+                    <div id="i2" class="bg-abt light-bg">
                         <div class="container">
                             <div class="title-desc  pb-sm-3">
                                 <h4 class="main-title-w3pvt">課程行事曆</h4>
-                                <p>helping animals & working on environmental issues.</p>
+                                
                             </div>
                             <div class="row flex-column mt-lg-4 mt-3">
                                 <div class="abt-grid">
@@ -168,11 +168,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                                 <span class="fa fa-ravelry"></span>
                                             </div>
                                         </div>
+                                      
                                         <div class="col-sm-9 pl-sm-0">
                                             <div class="abt-txt ml-sm-0">
-                                                <h4>sanctus takimata </h4>
-                                                <p>Lo sea takimata sanctus est Lorem ipolor sit amet, no sea takimata
-                                                    sanctus est Loremsum dolor sit amet.</p>
+                                                <h4>一站式課表管理</h4>
+                                                <p>同步顯示所有課程安排，不再撞課忘課， 人人都是時間管理大師。<br><br></p>
                                             </div>
                                         </div>
                                     </div>
@@ -186,14 +186,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         </div>
                                         <div class="col-sm-9 pl-sm-0">
                                             <div class="abt-txt ml-sm-0">
-                                                <h4>takimata sanctus</h4>
-                                                <p>Lo sea takimata sanctus est Lorem ipsum dolorsita.Lorem ipsum dolor
-                                                    sit amet,sed diam nonumy eirmod tempor invidunt ut labore et dolore
-                                                    magna aliquyam erat, At vero eos et accusam et justo duo dolores et
-                                                    ea
-                                                    rebum. Lorem ipsum dolor sit amet, no sea takimata sanctus est
-                                                    Lorem
-                                                    ipsum dolor sit amet. Stet clita kasd gubergren.</p>
+                                                <h4>即時雙向更新上課時間</h4>
+                                                <p>家教與學生能隨時互相配合，調整上課時間並更新到網頁上，臨時調課不再麻煩！<br><br><br><br><br></p>
                                             </div>
                                         </div>
                                     </div>
@@ -219,7 +213,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="container">
                             <div class="title-desc  pb-sm-3">
                                 <h4 class="main-title-w3pvt">學習歷程統計</h4>
-                                <p>helping animals & working on environmental issues.</p>
+                                
                             </div>
                             <div class="row flex-column mt-lg-4 mt-3">
                                 <div class="abt-grid">
@@ -231,9 +225,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         </div>
                                         <div class="col-sm-9 pl-sm-0">
                                             <div class="abt-txt ml-sm-0">
-                                                <h4>sanctus takimata </h4>
-                                                <p>Lo sea takimata sanctus est Lorem ipolor sit amet, no sea takimata
-                                                    sanctus est Loremsum dolor sit amet.</p>
+                                                <h4>統計你在家教平台的上課時數 </h4>
+                                                <p>主動統計您在本平台登記過的上課時數，經驗成長看得見，教學求學不留白。<br><br><br></p>
                                             </div>
                                         </div>
                                     </div>
@@ -247,14 +240,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         </div>
                                         <div class="col-sm-9 pl-sm-0">
                                             <div class="abt-txt ml-sm-0">
-                                                <h4>takimata sanctus</h4>
-                                                <p>Lo sea takimata sanctus est Lorem ipsum dolorsita.Lorem ipsum dolor
-                                                    sit amet,sed diam nonumy eirmod tempor invidunt ut labore et dolore
-                                                    magna aliquyam erat, At vero eos et accusam et justo duo dolores et
-                                                    ea
-                                                    rebum. Lorem ipsum dolor sit amet, no sea takimata sanctus est
-                                                    Lorem
-                                                    ipsum dolor sit amet. Stet clita kasd gubergren.</p>
+                                                <h4>家教經驗學生看得到</h4>
+                                                <p>分享家教教學時數，您的經驗學生家長看得見！平台公認家教大師，累計上課時數讓您不吹噓。<br><br><br><br></p>
                                             </div>
                                         </div>
                                     </div>
@@ -291,7 +278,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </div>
                     </div>
                     <div class="col-md-4 col-6 mt-md-0 mt-4">
-                        <div class="counter">
+                        <div id="i3" class="counter">
                             <span class="fa fa-database"></span>
                             <div class="timer count-title count-number mt-2 text-white" data-to="2298" data-speed="1500"></div>
                             <p class="count-text text-uppercase text-white">已協助處理的課程費用</p>
@@ -306,11 +293,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!-- services -->
     <div class="w3lspvt-about py-md-5 py-5" id="services">
         <div class="container pt-lg-5">
-            <div class="title-desc text-center pb-sm-3">
+            <div  class="title-desc text-center pb-sm-3">
                 <h3 class="main-title-w3pvt">輕鬆一站式完善你的家教生活</h3>
                 <p>想知道有哪些老師在這裡嗎？</p>
             </div>
-            <div class="w3lspvt-about-row row  text-center pt-md-0 pt-5 mt-lg-5">
+            <div  class="w3lspvt-about-row row  text-center pt-md-0 pt-5 mt-lg-5">
                 <div class="col-lg-4 col-sm-6 w3lspvt-about-grids">
                     <div class="p-md-5 p-sm-3">
                         <span class="fa fa-map-marker" data-blast="borderColor"></span>
@@ -393,10 +380,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-6 text-lg-right mt-lg-0 mt-4">
+                <div id="i5" class="col-lg-6 text-lg-right mt-lg-0 mt-4">
                     <p>© 2018 Creature. All rights reserved | Design by
                         <a href="http://w3layouts.com"> W3layouts.</a>
-                    </p>
+                    </p><hr>
+                    <p>Untitled. | Design by <a href="http://templated.co" rel="nofollow">TEMPLATED </a>| 網頁圖片均由本團隊繪製</p>
                 </div>
             </div>
         </div>
@@ -450,6 +438,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>
     </div>
     <!-- //login -->
+
+
     <!-- register -->
     <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
         aria-hidden="true">
@@ -483,24 +473,31 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <input type="password" class="form-control" placeholder="" name="CPassword" id="password2"
                                 required="">
                         </div>
+
+                        <!-- change part-->
                         <div class="sub-w3l">
                             <div class="sub-w3_pvt">
-                                <input type="radio" name="status" value="2" id="student" required>
+                                <input type="radio" name="status" value="2" id="student" required checked>
 									<label for="student" class="mb-3">student</label><span></span>                               
                                 <input type="radio" name="status" value="1" id="tutor">
 									<label for="tutor" class="mb-3">tutor</label>                                
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="bank_no" class="col-form-label">銀行代號</label>
-                            <input type="text" class="form-control" placeholder="" name="bank_no" id="bank_no"
-                                required="">
+
+
+
+                        <div id="catalog" style="display: none">
+                            <div class="form-group">
+                                <label for="bank_no" class="col-form-label">銀行代號</label>
+                                <input type="text" class="form-control" placeholder="" name="bank_no" id="bank_no" >
+
+                                <label for="bank_account" class="col-form-label">匯款帳號</label>
+                                <input type="text" class="form-control" placeholder="" name="bank_account" id="bank_account">
+                                <!-- delete id="password2" at the back of the input-->
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="bank_account" class="col-form-label">匯款帳號</label>
-                            <input type="text" class="form-control" placeholder="" name="bank_account" id="bank_account"
-                                required="">
-                        </div>
+
+
                         <div class="sub-w3l">
                             <div class="sub-w3_pvt">
                                 <input type="checkbox" id="accept_term" value="" required>
@@ -509,7 +506,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </div>
                         </div>
                         <div class="right-w3l">
-                            <input type="submit" class="form-control" value="Register" onclick="">
+                            <input type="submit" class="form-control" value="Register">
                         </div>
                     </form>
                 </div>
@@ -580,6 +577,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!-- //end-smooth-scrolling -->
     <!-- smooth-scrolling-of-move-up -->
     <script>
+
         $(document).ready(function () {
             /*
             var defaults = {
@@ -593,6 +591,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 easingType: 'easeOutQuart'
             });
 
+        });
+        /*show and hide jquery code*/
+        $("form input:radio").change(function () {
+            if ($(this).val() == "1") {
+                // Disable your roomnumber element here
+                document.getElementById('catalog').style.display = 'block';
+				document.getElementById("bank_no").required = true;
+				document.getElementById("bank_account").required = true;
+            } else {
+                // Re-enable here I guess
+                document.getElementById('catalog').style.display = 'none';
+				document.getElementById("bank_no").required = false;
+				document.getElementById("bank_account").required = false;
+            }
         });
     </script>
 	{% if messages %}

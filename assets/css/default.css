@@ -3,8 +3,8 @@
 @font-face
 {
 	font-family: 'FontAwesome';
-	src: url('fonts/fontawesome-webfont.eot?v=3.0.1');
-	src: url('fonts/fontawesome-webfont.eot?#iefix&v=3.0.1') format('embedded-opentype'),  url('fonts/fontawesome-webfont.woff?v=3.0.1') format('woff'),  url('fonts/fontawesome-webfont.ttf?v=3.0.1') format('truetype'),  url('fonts/fontawesome-webfont.svg#FontAwesome') format('svg');
+	src: url('../fonts/fontawesome-webfont.eot?v=3.0.1');
+	src: url('../fonts/fontawesome-webfont.eot?#iefix&v=3.0.1') format('embedded-opentype'),  url('../fonts/fontawesome-webfont.woff?v=3.0.1') format('woff'),  url('../fonts/fontawesome-webfont.ttf?v=3.0.1') format('truetype'),  url('../fonts/fontawesome-webfont.svg#FontAwesome') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -12,8 +12,8 @@
 @font-face
 {
 	font-family: 'Font-Awesome-Social';
-	src: url('fonts/fontawesome-social-webfont.eot');
-	src: url('fonts/fontawesome-social-webfont.eot?#iefix') format('embedded-opentype'),  url('fonts/fontawesome-social-webfont.woff') format('woff'),  url('fonts/fontawesome-social-webfont.ttf') format('truetype'),  url('fonts/fontawesome-social-webfont.svg#Font-Awesome-More') format('svg');
+	src: url('../fonts/fontawesome-social-webfont.eot');
+	src: url('../fonts/fontawesome-social-webfont.eot?#iefix') format('embedded-opentype'),  url('../fonts/fontawesome-social-webfont.woff') format('woff'),  url('../fonts/fontawesome-social-webfont.ttf') format('truetype'),  url('../fonts/fontawesome-social-webfont.svg#Font-Awesome-More') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -62,6 +62,7 @@
 {
 	content: "\f000";
 }
+
 
 .icon-music:before
 {
@@ -1528,7 +1529,7 @@ body
 {
 	margin: 0;
 	padding: 0;
-	background: #2F2F2F url(images/bg02.jpg) repeat;
+	background: #2F2F2F url(../images/bg02.jpg) repeat;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 12pt;
 	color: #5B5B5B;
@@ -1785,7 +1786,7 @@ ul.contact li a.icon-rss:before
 {
 	overflow:  hidden;
 	padding: 5em 0em;
-	background: url(images/bg01.jpg) repeat;
+	background: url(../images/bg01.jpg) repeat;
 	box-shadow: inset 0px 1px 0px 0px rgba(0,0,0,0.05), inset 0px 4px 15px 0px rgba(0,0,0,0.1);
 }
 
@@ -1842,7 +1843,7 @@ ul.contact li a.icon-rss:before
 .image-full
 {
 	display: block;
-	width: 100%;
+	width: 80%;
 	margin: 0 0 2em 0;
 }
 
@@ -2109,4 +2110,18 @@ ul.contact li a.icon-rss:before
 #box3
 {
 	float: right;
+}
+
+.ex3-box{
+    width: 100px;
+    height: 100px;
+    max-width:  50%;
+    display:  table;
+    background-color:  #eb9700;
+}
+.ex3-img{
+    display:table-cell;
+    vertical-align:middle;
+	max-width:  10%;
+    text-align:center;
 }

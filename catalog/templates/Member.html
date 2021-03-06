@@ -1,0 +1,338 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>家教管理平台 - 會員中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="keywords" content="Creature Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+	
+	{% load static %}
+    <!-- Custom Theme files -->
+    <link href="{% static 'css/bootstrap.css' %}" type="text/css" rel="stylesheet" media="all">
+    <!-- color switch -->
+    <link href="{% static 'css/blast.min.css' %}" rel="stylesheet" />
+    <!-- portfolio -->
+    <link href="{% static 'css/portfolio.css' %}" type="text/css" rel="stylesheet" media="all">
+    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="all">
+    <!-- font-awesome icons -->
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <!-- online-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <link href="{% static 'css/default.css' %}" rel="stylesheet" type="text/css" media="all" />
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <!-- banner -->
+    <div id="home">
+        <!-- color scheme -->
+        <div class="blast-box">
+            <div class="blast-frame">
+                <p>color schemes</p>
+                <div class="blast-colors d-flex justify-content-center">
+                    <div class="blast-color">#23d48f</div>
+                    <div class="blast-color">#d3b800</div>
+                    <div class="blast-color">#18e7d3</div>
+                    <div class="blast-color">#e5902a</div>
+                    <div class="blast-color">#16d9e9</div>
+                    <!-- you can add more colors here -->
+                </div>
+                <p class="blast-custom-colors">Choose Custom color</p>
+                <input type="color" name="blastCustomColor" value="#d3b800">
+
+            </div>
+            <div class="blast-icon"><span class="fa fa-paint-brush" aria-hidden="true"></span></div>
+        </div>
+        <!-- //color scheme -->
+        <!-- header -->
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-expand-lg navbar-light navbar-fixed-top">
+                <h1>
+                    <a class="navbar-brand"  >
+                        會員中心
+                    </a>
+                </h1>
+                <h2>
+                    <a class="navbar-brand" >
+                        Tutor
+                    </a>
+                </h2>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-lg-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="../calendar/">家教日程</a>
+						</li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">會員中心<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="../logout/">登出</a>
+						</li>
+                    </ul>
+                    <button type="button" class="btn  wthree-link-bnr bg-theme rounded-circle text-center mt-lg-0 mt-3" data-toggle="modal"
+                        aria-pressed="false" data-target="#exampleModal" data-blast="bgColor"> <span class="fa fa-user text-white"></span>
+                    </button>
+                </div>
+
+            </nav>
+        </header>
+        <!-- //header -->
+        <div class="callbacks_container">
+       
+            <div id="wrapper">
+                <div id="welcome" class="wrapper-style1">
+                    <div class="title">
+                        <h2>我的個人資料</h2>
+                        <span class="byline">會員資料管理</span> </div>
+                    </div>
+                <div id="page" class="container">
+                    <div id="content">
+                        <div class="title">
+                            <h2>個人檔案</h2><!--加入呼叫後台資料-->
+                            <span class="byline"></span> </div>
+                        <span class="image image-full"><img src="{% static 'images/pic01.jpg' %}" alt="" /></span>
+                        <p><span>用戶帳號</span><br><hr><br>
+                            <span>身份</span><br><hr><br>
+                            <span>姓名</span><br><hr><br>
+                            <span>e-mail</span><br><hr><br>
+                            <span>手機號碼</span><br><hr><br> 
+                        </p>
+                        <h3>&nbsp;</h3>
+                        <h3>我的學習歷程</h3>
+                        <p><span>時數統計</span><br><hr><br> 
+                            <span>當月上課時數</span><br><hr><br> 
+                            <span>累計上課時數</span><br><hr><br> 
+                            <span>當月課程數</span><br><hr><br> 
+                            <span>累計課程數</span><br><hr><br> 
+                        </p>
+                    </div>
+
+                    <div id="sidebar">
+                        <div id="sbox1">
+                            <form>
+							<div class="title">
+                                <h2>編輯個人資料</h2><!--加入彈出視窗-->
+                            </div>
+                            <ul class="style2">
+                                <li>登入密碼&nbsp;&nbsp;
+                                    <input>
+                                </li>
+                                <li>姓名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input>
+                                </li>
+                                <li>e-mail&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input>
+                                </li>
+                                <li>手機號碼&nbsp;&nbsp;
+                                    <input>
+                                </li>
+                                <li>收款帳戶資料&nbsp;&nbsp;&nbsp;
+                                    <input>
+                                </li>
+                                <!-- <li><a href="#">收款帳戶資料</a></li>-->
+                                <div class="buttonpart text-center" >
+                                    <button type="button" class="btn btn-primary" >修改</button>
+                                </div>
+                            </ul>
+                            </form>
+                        </div>
+
+                        <div id="sbox2">
+                            <div class="title">
+                                <h2>課程資料</h2><!--加入課程連結-->
+                            </div>
+                            <ul class="style2">
+                                <li><a href="#">課程一</a></li>
+                                <li><a href="#">課程二</a></li>
+                                <li><a href="#">課程三</a></li>
+                                <li><a href="#">課程四</a></li>
+                                <li><a href="#">課程五</a></li>
+                                <li><a href="#">課程六</a></li>
+                                <li><a href="#">課程七</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+            
+        </div>
+        
+    </div>
+    <!-- //banner -->
+    
+
+    <!-- slide -->
+   
+   
+    <!-- footer -->
+    <footer class="cpy-right bg-theme" data-blast="bgColor">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="wthree-social">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <span class="fa fa-facebook-f icon_facebook"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa fa-twitter icon_twitter"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa fa-dribbble icon_dribbble"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa fa-google-plus icon_g_plus"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-lg-right mt-lg-0 mt-4">
+                    <p>© 2018 Creature. All rights reserved | Design by
+                        <a href="http://w3layouts.com"> W3layouts.</a>
+                    </p><hr>
+                    <p>Untitled. | Design by <a href="http://templated.co" rel="nofollow">TEMPLATED </a>| 網頁圖片均由本團隊繪製</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- //footer -->
+    
+    <!-- js -->
+    <script src="{% static 'js/jquery-2.2.3.min.js' %}"></script>
+    <!-- //js -->
+    <!-- script for password match -->
+    <script>
+        window.onload = function () {
+            document.getElementById("password1").onchange = validatePassword;
+            document.getElementById("password2").onchange = validatePassword;
+        }
+
+        function validatePassword() {
+            var pass2 = document.getElementById("password2").value;
+            var pass1 = document.getElementById("password1").value;
+            if (pass1 != pass2)
+                document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+            else
+                document.getElementById("password2").setCustomValidity('');
+            //empty string means no validation error
+        }
+    </script>
+    <!-- script for password match -->
+    <!-- Banner  Responsiveslides -->
+    <script src="{% static 'js/responsiveslides.min.js' %}"></script>
+    <script>
+        // You can also use"$(window).load(function() {"
+        $(function () {
+            // Slideshow 4
+            $("#slider3").responsiveSlides({
+                auto: true,
+                pager: true,
+                nav: false,
+                speed: 500,
+                namespace: "callbacks",
+                before: function () {
+                    $('.events').append("<li>before event fired.</li>");
+                },
+                after: function () {
+                    $('.events').append("<li>after event fired.</li>");
+                }
+            });
+
+        });
+    </script>
+    <!-- //Banner  Responsiveslides -->
+    <!-- Scrolling Nav JavaScript -->
+    <script src="{% static 'js/scrolling-nav.js' %}"></script>
+    <script src="{% static 'js/counter.js' %}"></script>
+    <!-- portfolio -->
+    <script src="{% static 'js/jquery.picEyes.js' %}"></script>
+    <script>
+        $(function () {
+            //picturesEyes($('.demo li'));
+            $('.demo li').picEyes();
+        });
+    </script>
+    <!-- //portfolio -->
+    <!-- start-smooth-scrolling -->
+    <script src="{% static 'js/move-top.js' %}"></script>
+    <script src="{% static 'js/easing.js' %}"></script>
+
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+    </script>
+
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+        $(document).ready(function () {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear' 
+            };
+            */
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+    </script>
+
+
+
+    <script src="{% static 'js/SmoothScroll.min.js' %}"></script>
+    <!-- //smooth-scrolling-of-move-up -->
+
+    <!-- color switch -->
+    <script src="{% static 'js/blast.min.js' %}"></script>
+    <!-- Bootstrap core JavaScript
+================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+
+</body>
+
+</html>

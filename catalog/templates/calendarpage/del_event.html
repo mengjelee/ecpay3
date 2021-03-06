@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>刪除課程</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -20,27 +20,25 @@
 <body>
 
 <div class="container">
-    <form>
-
+    <form action="" method="post" name="myForm"> {% csrf_token %}
+        <h2>刪除課程</h2>
         <div class="mb-3">
-            <h2>刪除課程</h2>
-            <label for="Inputclassname" class="form-label">課程名稱</label>
-            <input type="email" class="form-control" id="Inputclassname" >
-
+            <label for="" class="form-label">當期課號</label>
+            <select name="class_serial"  onChange="renew(this.selectedIndex);" required>
+				<option value="">請選擇當期課號</option>
+				{% for detail in course %}
+					{% for key, value in detail.items %}
+					<option value="{{ value }}">{{ value }}</option>
+					{% endfor %}
+				{% endfor %}
+			</select><br>
         </div>
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">上課時數</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <label for="classtime" class="form-label">上課時間 :</label>
+            <select name="classtime" id="classtime" required>
+				<option value="">請選擇刪除時間</option>
+			</select><br>
         </div>
-        <div class="mb-3">
-            <label for="classtime" class="form-label">上課日期 :</label>
-            <input type="password" class="form-control" id="classtime">
-        </div>
-        <div class="mb-3">
-            <label for="student_id" class="form-label">學生id :</label>
-            <input type="password" class="form-control" id="student_id">
-        </div>
-
         <div class="text-center">
             <button type="submit" class="btn btn-primary">刪除</button>
             <button type="button" class="btn btn-danger" onclick="defaultInput()">取消</button>
@@ -51,6 +49,26 @@
 
 <script>
 
+class_date=new Array();
+var c=0;
+{% for c_date in course_date %}
+	class_date[c]=[];
+	{% for d in c_date %}
+		class_date[c].push('{{d}}');
+	{% endfor %}
+	c+=1;
+{% endfor %}
+function renew(index){
+	index-=1;
+	if(index>=0){
+	document.myForm.classtime.options[1]=new Option("刪除整期課程", "all");
+	for(var i=0;i<class_date[index].length;i++)
+		document.myForm.classtime.options[i+2]=new Option(class_date[index][i], class_date[index][i]);	// 設定新選項
+	document.myForm.classtime.length=class_date[index].length+2;	// 刪除多餘的選項
+	}
+	else
+		document.myForm.classtime.length=1;
+}
     function defaultInput(){
         // 取得input的資料
 

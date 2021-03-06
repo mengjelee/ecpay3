@@ -19,7 +19,7 @@
 </head>
 <body>
     <div class="container">
-        <form action="" method="post"> {% csrf_token %}
+        <form action="" method="post" id='myForm'> {% csrf_token %}
             <h2>建立課程</h2>
             <div class="mb-3">
                 <label for="student_id" class="form-label">學生id</label>
@@ -104,9 +104,11 @@
 				if (st>=et.value)
 					et.setCustomValidity("結束時間應於開始時間後");
 			}
+			//window.returnValue = true;
+			//document.getElementById("myForm").submit();
         }
         function defaultInput(){
-            window.close();
+			window.close();
         }
 		function clone() {
 			var $row = $('#ctime');

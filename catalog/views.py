@@ -10,14 +10,12 @@ from datetime import datetime, timedelta
 from django.db.models import Sum
 
 def ecpay_view(request):
+    class_serial = request.POST.get('class_serial')
     context = {
         'user_name': request.COOKIES['user_name'],
         'user_account': request.COOKIES['user_account'],
+        'class_serial': class_serial,
     }
-    user_id = request.COOKIES['user_id']
-    class_ = Class.objects.filter(tutor = user_id).first()
-    class_serial = class_.class_serial#從前端接收
-    context['class_serial'] = class_serial
     #價格計算
     c = Class.objects.get(class_serial = class_serial)
     result = Class_details.objects.filter(class_serial = c).aggregate(total = Sum('fee'))
@@ -45,28 +43,35 @@ def login(request):
                 response.set_cookie("user_id", user.user_id)
                 response.set_cookie("user_account", user.account)
                 response.set_cookie("user_name", user.name)
-                response.set_cookie("user_email", user.email)
                 if user.status == 1:
                     response.set_cookie("user_status", "Teacher")
                 else:
                     response.set_cookie("user_status", "Student")
-                response.set_cookie("user_bank_no", user.bank_no)
-                response.set_cookie("user_bank_account", user.bank_account)
                 return response
         messages.error(request, '使用者帳號或密碼錯誤')
         return HttpResponseRedirect(reverse('index'))       
-        #return render(request, 'frontpage.html')
+
+def logout_user(request):
+    response = HttpResponseRedirect('/')
+    response.delete_cookie("user_id")
+    response.delete_cookie("user_account")
+    response.delete_cookie("user_name")
+    response.delete_cookie("user_status")
+    return response
 
 def register(request):
     if request.method == "POST":
         name = request.POST.get('name')
         status = request.POST.get('status')
-        email = request.POST.get('email')
-        bank_no = request.POST.get('bank_no')
-        bank_account = request.POST.get('bank_account')        
+        email = request.POST.get('email')       
         password = request.POST.get('password')
         user_id = User.objects.count()
-        user = User.objects.create(user_id = user_id, name = name, password = password, email = email, status = status, bank_account = bank_account, bank_no = bank_no)
+        if status == '1':
+            bank_no = request.POST.get('bank_no')
+            bank_account = request.POST.get('bank_account')
+            user = User.objects.create(user_id = user_id, name = name, password = password, email = email, status = status, bank_account = bank_account, bank_no = bank_no)
+        else:
+            user = User.objects.create(user_id = user_id, name = name, password = password, email = email, status = status)
         account = str(user_id)
         while(len(account)!=5):
             account = '0' + account
@@ -92,15 +97,24 @@ def homepage(request):
     return render(request, 'calendarpage/calendar.html', context)
 
 def calendar(request):
-    teacher_id = request.COOKIES['user_id']
-    courses = Class.objects.filter(tutor=teacher_id)
-    course_value = Class.objects.filter(tutor=teacher_id).values()
+    status = request.COOKIES['user_status']
+    if status == 'Teacher':
+        html_page = 'calendarpage/calendar_t.html'
+        teacher_id = request.COOKIES['user_id']
+        courses = Class.objects.filter(tutor=teacher_id)
+        course_value = Class.objects.filter(tutor=teacher_id).values()
+    else:
+        html_page = 'calendarpage/calendar_s.html'
+        student_id = request.COOKIES['user_id']
+        courses = Class.objects.filter(student=student_id)
+        course_value = Class.objects.filter(student=student_id).values()
     course = [entry for entry in course_value]
     course_detail = []
     for c in courses:
         detail_value = Class_details.objects.filter(class_serial=c).values()
         course_detail.extend([entry for entry in detail_value])
-    return render(request, 'calendarpage/calendar.html', {'course':course, 'course_detail':course_detail})
+    return render(request, html_page, {'course':course, 'course_detail':course_detail})
+       
 
 def new_course(request):
     if request.method == 'GET':
@@ -142,7 +156,7 @@ def new_course(request):
             while(len(serial_no)!=4):
                 serial_no = '0' + serial_no
             course.class_serial = serial + serial_no
-            
+            course.save()
             # 新增課程細項
             class_daytime = Class_DayTime.objects.filter(class_serial = course)            
             date_end = datetime.strptime(end_date, "%Y-%m-%d")
@@ -157,13 +171,67 @@ def new_course(request):
                             Class_details.objects.create(class_serial = course, class_date = date2add, fee = fee,
                                                          start_time = start_time, end_time = end_time)
                             date2add += timedelta(days=7)
-                        break    
-            course.save()                            
+                        break                                
             messages.error(request, '成功新增課程')
             return HttpResponseRedirect(reverse('calendar'))
         else:
             messages.error(request, '學生不存在')
             return HttpResponseRedirect(reverse('new_course'))
+
+def new_single_course(request):
+    if request.method == 'GET':
+        c_date = request.GET.get('c_date')
+        teacher_id = request.COOKIES['user_id']
+        courses = Class.objects.filter(tutor=teacher_id).values("class_serial")
+        c = []
+        for course in courses:
+            for key, value in course.items():
+                c.append(value)
+        return render(request, 'calendarpage/input_single.html', {'course':c, 'c_date':c_date})
+    elif request.method == 'POST':
+        class_serial = request.POST.get('class_serial')
+        c = Class.objects.get(class_serial = class_serial)
+        fee = request.POST.get('fee')
+        start_date = request.POST.get('start_date')
+        class_date = datetime.strptime(start_date, "%Y-%m-%d")
+        start_time = request.POST.get('start_time')
+        end_time = request.POST.get('end_time')
+        Class_details.objects.create(class_serial = c, class_date = class_date, fee = fee,
+                                     start_time = start_time, end_time = end_time)
+        messages.error(request, '成功新增課程')
+        return HttpResponseRedirect(reverse('calendar'))
+
+def delete_course(request):
+    if request.method == 'GET':
+        teacher_id = request.COOKIES['user_id']
+        courses = Class.objects.filter(tutor=teacher_id).values("class_serial")
+        course = [entry for entry in courses]
+        course_detail = Class.objects.filter(tutor=teacher_id)
+        course_date = []
+        for c in course_detail:
+            date_value = Class_details.objects.filter(class_serial=c).values("class_date")
+            d = []
+            for class_date in date_value:
+                for key, value in class_date.items():
+                    d.append(str(value.strftime("%Y-%m-%d")))
+                d.sort()
+            course_date.append(d)
+        return render(request, 'calendarpage/del_event.html', {'course':course, 'course_date':course_date})
+    elif request.method == 'POST':
+        class_serial = request.POST.get('class_serial')
+        classtime = request.POST.get('classtime')
+        if(classtime == 'all'):
+            Class.objects.get(class_serial = class_serial).delete()
+        else:
+            c = Class.objects.get(class_serial = class_serial)
+            class_date = datetime.strptime(classtime, "%Y-%m-%d")
+            Class_details.objects.get(class_serial = c, class_date = class_date).delete()
+        messages.error(request, '成功刪除課程')
+        return HttpResponseRedirect(reverse('calendar'))                            
+
+
+def mydata(request):
+    return render(request, 'Member.html')
 
 def editdata(request):
     if request.method == 'GET':
@@ -234,9 +302,11 @@ def end_page(request):
         result = request.POST.get('RtnMsg')
         if result == 'Succeeded':
             paymenet = Payment.objects.create(trade_no =request.POST.get('TradeNo'), trade_amt =request.POST.get('TradeAmt'),trade_status='Succeeded',trade_time=request.POST.get('TradeDate'),CheckMacValue=request.POST.get('CheckMacValue'))
-            # class_serial = request.POST.get('ItemName')
-            # c = Class.objects.get(class_serial = class_serial)
-            # c.update(trade_no=paymenet, pay_or_not = True)
+            class_serial = request.POST.get('CustomField1')
+            c = Class.objects.get(class_serial = class_serial)
+            c.trade_no = paymenet
+            c.pay_or_not = True
+            c.save()
             return HttpResponseRedirect(reverse('success_pay'))
         # 判斷失敗
         else:

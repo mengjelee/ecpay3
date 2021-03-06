@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>calendar</title>
+    <!-- using bootstrap tools(for RWD)-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <script src="{% static 'javascript/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'javascript/bootstrap.min.js' %}"></script>
+
+    <!-- using fullcalendar.js to create a calendar-->
+    <script src="{% static 'javascript/moment.js' %}"></script>
+	<script src="{% static 'calendarpage/javascript/DateFormat.js' %}"></script>
+    <script src="{% static 'fullcalendar-5.5.1/lib/main.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/resetbrowser.css' %}">
+    <link rel='stylesheet' type='text/css' href="{% static 'fullcalendar-5.5.1/lib/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/calendar.css' %}">
+</head>
+
+<body>
+<!-- header part of code-->
+<header>
+
+    <div class="container">
+        <!-- navbar from bootstrap (code) -->
+        <nav class="navbar navbar-expand-lg navbar-dark"> <!-- orign navbar-light -->
+            <a class="navbar-brand" href="#">
+                日曆安排
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-lg-auto">                             <!-- ml-lg-auto 讓選項向右對齊 -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">返回前頁</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">家教日程<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">會員中心</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <script>
+
+    </script>
+
+</header>
+
+<!-- calendar part start-->
+<div class="container">
+    <div id="calendar">
+
+    </div>
+</div>
+
+<!-- This part list out the tutor event-->
+<div class="container">
+    <h2 class="view_title">課程列表</h2>
+    <div id="view_part">
+
+    </div>
+</div>
+
+<!-- fullcalendar.js 的相關參數設定，各項觸發程式 -->
+<script>
+	//console.log({{ counter }});
+	// 將課程資訊加入行事曆
+	var subject = {
+		"mth":'數學',
+		"chn":'國文',
+		"eng":'英文',
+		"phy":'物理',
+		"chem":'化學',
+		"bio":'生物',
+		"es":'地科',
+		"pnc":'理化',
+		"prg":'程式',
+		"geo":'地理',
+		"his":'歷史',
+		"cvc":'公民',
+		"scl":'社會',
+		"art":'藝術',
+		"oth":'其他',
+	};
+	var class_subject=[];
+	{% for detail in course %}
+		class_subject.push({id: '{{detail.class_id}}',subject: subject['{{detail.subject}}']});
+	{% endfor %}
+	var list1 = [];
+	{% for c_detail in course_detail %}
+		var c_id = '{{c_detail.class_serial_id}}';
+		for (let i=0; i<class_subject.length; i++){
+			if(class_subject[i].id == c_id){
+				list1.push({id: '{{c_detail.class_detail_id}}',
+							title: class_subject[i].subject,
+							date: (new Date('{{c_detail.class_date}}')).format("yyyy-MM-dd")});//, editable: true
+			}
+		}
+	{% endfor %}
+	// 課程行事曆 end
+	
+    document.addEventListener('DOMContentLoaded', function() {
+
+        var calendarEl = document.getElementById('calendar');
+        //fullcalendar.js提供的基本設定
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            height: 500,
+            selectable: true,
+            themeSystem: 'standard',
+            headerToolbar: {
+
+                left: 'dayGridMonth,timeGridWeek,listMonth AddEvent',
+                center: 'title',
+                right: 'DeleteEvent prevYear,prev,next,nextYear',
+                //right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth',
+            },
+            dayMaxEvents: true,
+
+            events: list1,//'https://fullcalendar.io/demo-events.json', //資料庫裡的事件，可用json php 等等
+            // 目前直接預設接入 fullcalendar提供的json
+
+            // 點擊日曆所觸發的事件
+            dateClick: function(info) {
+                //藉由點擊的日期位置 將時間存入data
+                var date = new Date(info.dateStr + 'T00:00:00'); // will be in local time
+                var topic = "test";
+				var form = document.createElement("form");
+				form.setAttribute("method", "get");
+				form.setAttribute("action", "../new_single_course/");
+				form.setAttribute("target", "alarmConfigWindow");
+				var hiddenField = document.createElement("input"); 
+			    hiddenField.setAttribute("type", "hidden");
+			    hiddenField.setAttribute("name", "c_date");
+			    hiddenField.setAttribute("value", info.dateStr);
+			    form.appendChild(hiddenField);
+			    document.body.appendChild(form);
+                //點擊後觸發開啟視窗的function 開啟input.html
+                subWindow = openWindow('url',"alarmConfigWindow",'width=400 , height=470');
+				form.submit();
+                // 判斷日期以及標題資料的正確性
+                /*if (!isNaN(date.valueOf()) && topic != null) { // valid?
+                  ;
+                    // 藉由插件提供的addEvent方法在日曆上新增事件
+                    calendar.addEvent({
+                        id:52,
+                        title: topic,
+                        start: date,
+                        allDay: true,
+						//editable: true
+                    });
+
+                    //---add_event_onweb 函式於下方顯示列 顯示新增的事件--
+                    add_event_onweb(topic,date);
+
+                } else {
+                    alert('輸入錯誤請再次輸入');
+                }*/
+            },
+			// eventClick 點擊日曆事件
+			eventClick: function(info) {
+				console.log(info.event.id);
+			},
+            // 對於上方的按鈕進行定義
+            customButtons: {
+				// 新增課程
+				AddEvent:{
+					text: '新增活動',
+					//這邊先暫時自訂數值
+					click:function (){
+						openWindow('../new_course/',"Win",'width=400 , height=470');
+						calendar.addEvent({
+							id: "test",
+							title: "我是測試",
+							start: "2021-02-11T12:30:00Z",
+							allDay: true,
+						})
+						//add_event_onweb("test","test");
+					}
+				},
+				// 刪除課程
+                DeleteEvent:{
+                    // delete event 需要先取得日曆事件的id
+                    text: '刪除活動',
+                    click: function (){
+                        openWindow('../delete_course/',"Win",'width=400 , height=470');
+                    }
+                }
+            },
+
+        });
+        calendar.render();
+    });
+</script>
+
+<!-- 建立 input.html的課程建立視窗-->
+<script>
+    //參數依序為 開啟url 設定id值 長寬設定
+    function openWindow(url, id, args) {
+        window.open(url,id, args);
+    }
+</script>
+
+<!-- 刪除日曆事件的function-->
+<script>
+    //傳入要刪除事件的 event_ID
+    function delete_event(event_ID)
+    {
+        //藉由event_ID 來刪除 日曆上的event (不包含資料庫與下方顯示部分)
+        var del_event = calendar.getEventById(event_ID);
+        del_event.remove();
+    }
+</script>
+
+<!-- 動態輸出上方日曆的事件的javascript -->
+<script>
+	var subject = {
+		"mth":'數學',
+		"chn":'國文',
+		"eng":'英文',
+		"phy":'物理',
+		"chem":'化學',
+		"bio":'生物',
+		"es":'地科',
+		"pnc":'理化',
+		"prg":'程式',
+		"geo":'地理',
+		"his":'歷史',
+		"cvc":'公民',
+		"scl":'社會',
+		"art":'藝術',
+		"oth":'其他',
+	};
+    function add_event_onweb(class_id, class_serial, sid, sub, date, paid) {
+		//console.log(Object.keys(classname));
+        var before = document.getElementById("view_part") 
+        var Odiv=document.createElement('div');             //建立一個div\
+        var Oform=document.createElement('form');
+		var Oinput=document.createElement('input');
+		var OH2=document.createElement('h2');               //class_serial
+        var OH3 = document.createElement('h2');				//student_id
+        var OH3_1 = document.createElement('h2');			//subject
+        var OH3_2 = document.createElement('h2');			//date
+        var OBut = document.createElement('button');		//fee
+
+        before.appendChild(Odiv);                       	/*在viewpart 後面新增 div*/
+        Odiv.id = class_id;                         	//div的class為Box
+		Odiv.className = 'event_lis';
+
+        Odiv.appendChild(OH2);
+        OH2.append(class_serial);
+		
+		while(sid.length<5)
+			sid = '0'+sid;
+		sid = 'S'+sid;
+        Odiv.appendChild(OH3);
+        OH3.append(sid);
+		
+        Odiv.appendChild(OH3_1);
+        OH3_1.append(subject[sub]);
+
+        Odiv.appendChild(OH3_2);
+        OH3_2.append(date);
+		if(paid == 'True'){
+			OH3_3 = document.createElement('h2');
+			Odiv.appendChild(OH3_3);
+			OH3_3.append("已繳費")
+		}
+		else{
+        Odiv.appendChild(Oform);
+        Oform.action = "../ecpay/";
+        Oform.method = "post";
+		Oform.style.display = 'inline';
+
+        Oform.appendChild(Oinput);
+        Oinput.append(class_serial);
+		Oinput.type="text";
+		Oinput.name="class_serial";
+		Oinput.value=class_serial;
+		Oinput.style.display='none';
+
+        Oform.appendChild(OBut);
+        OBut.append("繳費");
+		OBut.type="submit";
+		/*
+        OBut.onclick = function(){
+			window.open("../ecpay/");
+		};*/
+		}
+    }
+	{% for detail in course %}
+		add_event_onweb('{{detail.class_id}}', '{{detail.class_serial}}', '{{detail.student_id}}',
+		'{{detail.subject}}', '{{detail.start_date}}~\n{{detail.end_date}}', '{{detail.pay_or_not}}');
+	{% endfor %}/**/
+</script>
+
+	{% if messages %}
+		<script>
+			{% for msg in messages %}
+				alert('{{ msg.message }}');
+			{% endfor %}
+		</script>
+	{% endif %}
+
+</body>
+</html>

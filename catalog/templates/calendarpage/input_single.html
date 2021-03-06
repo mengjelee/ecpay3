@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增課程</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <style>
+        .mb-3 h2{
+            margin-top: 25px;
+            font-family: 微軟正黑體;
+            margin-bottom: 5px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="" method="post"> {% csrf_token %}
+            <h2>建立課程</h2>
+            <!--div class="mb-3">
+                <label for="student_id" class="form-label">學生id</label>
+                <input type="text" class="form-control" id="student_id" name="student_id" pattern="^[S]{1}[0-9]{5}" maxLength="6" oninput="setCustomValidity('');" required>
+            </div-->
+            <div class="mb-3">
+                <label for="" class="form-label">當期課號</label>
+                <select name="class_serial" required>
+					<option value="">請選擇當期課號</option>
+					{% for value in course %}
+						<option value="{{ value }}">{{ value }}</option>
+					{% endfor %}
+				</select><br>
+            </div>
+            <div class="mb-3">
+                <label for="fee" class="form-label">單堂費用</label>
+                <input type="number" class="form-control" id="fee" name="fee" required>
+            </div>
+            <div class="mb-3">
+                <label for="classdate" class="form-label" style="display:inline">上課日期：</label><br>
+                <input type="text" name="start_date" id="start_date" value="{{ c_date }}" readonly><br>
+            </div>
+            <div class="mb-3" id="ct">
+                <label for="classtime" class="form-label">上課時間</label><br>
+            <div class="ctime" id="ctime" style="display:inline">
+                <input type="time" class="ct" id="start_time" name="start_time" required><p style="display:inline">~</p>
+                <input type="time" class="et" id="end_time" name="end_time" oninput="setCustomValidity('');" required>
+            </div>
+			</div>
+
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary" onclick="checkcourse()">建立</button>
+                <button type="button" class="btn btn-danger" onclick="defaultInput()">取消</button>
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+        function checkcourse(){
+			// 檢查時間
+			var et=document.getElementById("end_time");
+			var st=document.getElementById("start_time").value;
+			if (st>=et.value)
+				et.setCustomValidity("結束時間應於開始時間後");
+        }
+        function defaultInput(){
+            window.close();
+        }
+    </script>
+
+	{% if messages %}
+		<script>
+			{% for msg in messages %}
+				alert('{{ msg.message }}');
+			{% endfor %}
+		</script>
+	{% endif %}
+</body>
+</html>

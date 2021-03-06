@@ -94,7 +94,7 @@ else:
             'PORT': '5432',
         }
     }
-
+LOGOUT_REDIRECT_URL = '/'
 
 
 # Password validation
