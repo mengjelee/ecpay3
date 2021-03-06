@@ -150,3 +150,26 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
+
+DJANGO_ICONS = {
+'DEFAULTS': {
+'renderer': 'fontawesome',
+},
+'RENDERERS': {
+'fontawesome': 'FontAwesomeRenderer',
+'bootstrap3': 'Bootstrap3Renderer',
+},
+'ICONS': {
+'delete': 'trash',
+'edit': {
+'name': 'pencil',
+'title': 'Edit',
+},
+'feather': {
+'renderer': 'tests.app.renderers.CustomSvgRenderer',
+},
+'paperplane': {
+'renderer': 'tests.app.renderers.CustomSvgRenderer',
+}
+},
+}
