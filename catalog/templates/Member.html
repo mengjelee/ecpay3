@@ -114,47 +114,49 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <h2>個人檔案</h2><!--加入呼叫後台資料-->
                             <span class="byline"></span> </div>
                         <span class="image image-full"><img src="{% static 'images/pic01.jpg' %}" alt="" /></span>
-                        <p><span>用戶帳號</span><br><hr><br>
-                            <span>身份</span><br><hr><br>
-                            <span>姓名</span><br><hr><br>
-                            <span>e-mail</span><br><hr><br>
-                            <span>手機號碼</span><br><hr><br> 
+                        <p><span>用戶帳號	&nbsp;&nbsp;{{user_info.account}}</span><br><hr><br>
+                            <span>身份	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user_info.status}}</span><br><hr><br>
+                            <span>姓名	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user_info.name}}</span><br><hr><br>
+                            <span>e-mail	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user_info.email}}</span><br><hr><br>
                         </p>
-                        <h3>&nbsp;</h3>
+                        <!--h3>&nbsp;</h3>
                         <h3>我的學習歷程</h3>
                         <p><span>時數統計</span><br><hr><br> 
                             <span>當月上課時數</span><br><hr><br> 
                             <span>累計上課時數</span><br><hr><br> 
                             <span>當月課程數</span><br><hr><br> 
                             <span>累計課程數</span><br><hr><br> 
-                        </p>
+                        </p-->
                     </div>
 
                     <div id="sidebar">
                         <div id="sbox1">
-                            <form>
+                            <form action="" method="post" id='myForm'> {% csrf_token %}
 							<div class="title">
                                 <h2>編輯個人資料</h2><!--加入彈出視窗-->
                             </div>
                             <ul class="style2">
                                 <li>登入密碼&nbsp;&nbsp;
-                                    <input>
+                                    <input type="password" name="password" id="password1">
+                                </li>
+                                <li>確認密碼&nbsp;&nbsp;
+                                    <input type="password" name="Cpassword" id="password2" onchange="validatePassword(this);" oninput="setCustomValidity('');">
                                 </li>
                                 <li>姓名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <input>
+                                    <input type="text" name="name">
                                 </li>
                                 <li>e-mail&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <input>
+                                    <input type="email" name="email">
                                 </li>
-                                <li>手機號碼&nbsp;&nbsp;
-                                    <input>
-                                </li>
-                                <li>收款帳戶資料&nbsp;&nbsp;&nbsp;
-                                    <input>
+                                <li>收款帳戶資料&nbsp;&nbsp;&nbsp;<br>
+                                    <span>銀行代號&nbsp;&nbsp;</span>
+									<input type="text" name="bank_no" pattern="[0-9]+" onchange="validateBankinfo(this);" oninput="setCustomValidity('');"><br>
+                                    <span>匯款帳號&nbsp;&nbsp;</span>
+									<input type="text" name="bank_account" pattern="[0-9]+" onchange="validateBankinfo(this);" oninput="setCustomValidity('');">
                                 </li>
                                 <!-- <li><a href="#">收款帳戶資料</a></li>-->
                                 <div class="buttonpart text-center" >
-                                    <button type="button" class="btn btn-primary" >修改</button>
+                                    <button type="submit" class="btn btn-primary" onclick="checkinfo();">修改</button>
                                 </div>
                             </ul>
                             </form>
@@ -235,20 +237,45 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!-- //js -->
     <!-- script for password match -->
     <script>
-        window.onload = function () {
-            document.getElementById("password1").onchange = validatePassword;
-            document.getElementById("password2").onchange = validatePassword;
-        }
-
-        function validatePassword() {
+        function validatePassword(pwd) {
             var pass2 = document.getElementById("password2").value;
             var pass1 = document.getElementById("password1").value;
-            if (pass1 != pass2)
-                document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+            if (pass1 != pass2){
+                pwd.setCustomValidity("Passwords Don't Match");
+				pwd.value='';
+			}
             else
-                document.getElementById("password2").setCustomValidity('');
+                pwd.setCustomValidity('');
+			pwd.reportValidity();
             //empty string means no validation error
         }
+		function validateBankinfo(info){
+			if (info.validity.patternMismatch === true){
+				info.value='';
+				info.setCustomValidity("只接受數字");
+				info.reportValidity();
+			}
+		}
+		function checkinfo(){
+			var $form = $('#myForm');
+			var empty_count = 0;
+			$form.find('input').each(function () {
+				if(this.value==''){
+					empty_count+=1;
+					if(empty_count == 6){ //all empty
+						console.log(empty_count);
+						return;
+					}
+				}
+			});
+            var pass2 = document.getElementById("password2");
+            var pass1 = document.getElementById("password1");
+            if (pass1.value != pass2.value){
+                pass2.setCustomValidity("Passwords Don't Match");
+				pass2.value='';
+				return;
+			}			
+		}
     </script>
     <!-- script for password match -->
     <!-- Banner  Responsiveslides -->

@@ -8,6 +8,7 @@ from django.urls import reverse
 from django.contrib import messages
 from datetime import datetime, timedelta
 from django.db.models import Sum
+from django.forms.models import model_to_dict
 
 def ecpay_view(request):
     class_serial = request.POST.get('class_serial')
@@ -44,7 +45,7 @@ def login(request):
                 response.set_cookie("user_account", user.account)
                 response.set_cookie("user_name", user.name)
                 if user.status == 1:
-                    response.set_cookie("user_status", "Teacher")
+                    response.set_cookie("user_status", "Tutor")
                 else:
                     response.set_cookie("user_status", "Student")
                 return response
@@ -98,7 +99,7 @@ def homepage(request):
 
 def calendar(request):
     status = request.COOKIES['user_status']
-    if status == 'Teacher':
+    if status == 'Tutor':
         html_page = 'calendarpage/calendar_t.html'
         teacher_id = request.COOKIES['user_id']
         courses = Class.objects.filter(tutor=teacher_id)
@@ -231,7 +232,17 @@ def delete_course(request):
 
 
 def mydata(request):
-    return render(request, 'Member.html')
+    if request.method == 'GET':
+        user_id = request.COOKIES['user_id']
+        user_info = User.objects.get(user_id=user_id)
+        u = model_to_dict(user_info)
+        if user_info.status == 1:
+            u['status'] = 'Tutor'
+        else:
+            u['status'] = 'Student'
+        return render(request, 'Member.html', {'user_info':u})
+    elif request.method == 'POST':
+        return HttpResponseRedirect(reverse('mydata'))
 
 def editdata(request):
     if request.method == 'GET':
@@ -239,9 +250,7 @@ def editdata(request):
             try:
                 context = {
                     'user_name': request.COOKIES['user_name'],
-                    'user_email': request.COOKIES['user_email'],
                     'user_status': request.COOKIES['user_status'],
-                    'user_card_number': request.COOKIES['user_card_number'],
                 } 
             except:
                 return HttpResponse('User undifined.') 

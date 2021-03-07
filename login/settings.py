@@ -14,7 +14,7 @@ mimetypes.add_type("text/html", ".html", True)
 mimetypes.add_type("text/css", ".css", True)
 mimetypes.add_type("application/javascript", ".js", True)
 
-import dj_database_url
+
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -30,7 +30,7 @@ SECRET_KEY = '(6@zgd+736!4r+tk4te28$)r3ujr2vkbgfx^lzg8%(6maf%*gg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0','ecpay3.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['0.0.0.0','ecpay2.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -79,22 +79,12 @@ WSGI_APPLICATION = 'login.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-if 'DATABASE_URL' in os.environ:
-    DATABASES = {
-        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'ecpay_db',
-            'USER': 'postgres',
-            'PASSWORD': 'mjbbo4i7',
-            'HOST': 'localhost',
-            'PORT': '5432',
-        }
-    }
-LOGOUT_REDIRECT_URL = '/'
+}
 
 
 # Password validation

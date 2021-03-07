@@ -11,8 +11,8 @@ class User(models.Model):
     bank_no = models.IntegerField(null=True, blank=True)
     
     USER_STATUS = (
-        (1, 'Teacher'),
-        (2, 'Student/Parents'),
+        (1, 'Tutor'),
+        (2, 'Student'),
     )
 
     status = models.IntegerField(
