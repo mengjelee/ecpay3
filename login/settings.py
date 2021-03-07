@@ -30,7 +30,7 @@ SECRET_KEY = '(6@zgd+736!4r+tk4te28$)r3ujr2vkbgfx^lzg8%(6maf%*gg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0','ecpay2.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['0.0.0.0','ecpay3.herokuapp.com','127.0.0.1']
 
 
 # Application definition
